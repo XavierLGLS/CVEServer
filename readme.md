@@ -1,8 +1,8 @@
 # General project management
 
 TODO:
-[x] create a git repo
-[ ] define intermediate projects (and their api)
+- [x] create a git repo
+- [ ] define intermediate projects (and their api)
 
 
 # Configuration
