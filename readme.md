@@ -1,8 +1,8 @@
 # General project management
 
 TODO:
-* create a git repo
-* define intermediate projects (and their api)
+[x] create a git repo
+[ ] define intermediate projects (and their api)
 
 
 # Configuration
@@ -16,6 +16,10 @@ pull and handle of all needed data from the sailaway api every SW_API_PULL_RATE 
 TODO:
 * definition of calculation processes
 * check server performance
+
+# Admin panel
+
+Manage the list of all players that use this addon (feature: manual remove of very old accounts ?)
 
 # Client side API
 
