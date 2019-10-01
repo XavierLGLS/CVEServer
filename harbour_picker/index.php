@@ -42,11 +42,11 @@ require("../config.php");
                 <input type="hidden" name="user_id">
                 <div class="form-group">
                     <label for="lat">Latitude</label>
-                    <input type="number" class="form-control" name="lat" placeholder="dble click the map to fill in">
+                    <input type="number" class="form-control" name="lat" step="0.001" placeholder="dble click the map to fill in">
                 </div>
                 <label for="lng">Longitude</label>
                 <div class="form-group">
-                    <input type="number" class="form-control" name="lng" placeholder="dble click the map to fill in">
+                    <input type="number" class="form-control" name="lng" step="0.001" placeholder="dble click the map to fill in">
                 </div>
                 <label for="radius">Circular area radius</label>
                 <div class="form-group">
