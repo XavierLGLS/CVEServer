@@ -1,3 +1,6 @@
+<?php
+require("../config.php");
+?>
 <!DOCTYPE html>
 <html>
 
@@ -36,7 +39,7 @@
             Here is the responsive interface bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
         </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW0aTI2ivpQKZoDbVewEANE09lCdAbyMs&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $MAPS_API_KEY; ?>&callback=initMap" async defer></script>
 </body>
 
 </html>
