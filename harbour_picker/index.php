@@ -41,20 +41,20 @@ require("../config.php");
             <form action="handler.php" method="post">
                 <input type="hidden" name="user_id">
                 <p>
-                    <label for="lat">Latitude</label>
+                    <label for="lat">Latitude (double click the map to fill in)</label>
                     <input type="number" name="lat">
                 </p>
                 <p>
-                    <label for="lng">Longitude</label>
+                    <label for="lng">Longitude (double click the map to fill in)</label>
                     <input type="number" name="lng">
                 </p>
                 <p>
                     <label for="radius">Circular area radius</label>
-                    <input type="number" name="radius">
+                    <input type="number" name="radius" placeholder="m">
                 </p>
                 <p>
                     <label for="name">Harbour name</label>
-                    <input type="text" name="name">
+                    <input type="text" name="name" placeholder="be concise">
                 </p>
                 <p>
                     <input type="button" value="Add this harbour to the database">
