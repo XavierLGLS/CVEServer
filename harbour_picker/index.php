@@ -32,11 +32,36 @@ require("../config.php");
 <body>
     <div class="container">
         <h1>Harbour picker</h1>
+        <p>This tool fill the database that stores all harbours where players will be able to make deals.</p>
         <div class="col-xs-12 col-sm-6">
             <div id="map" style="height: 500px;"></div>
         </div>
         <div class="col-xs-12 col-sm-6">
-            Here is the responsive interface bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+            <h4>Add a new harbour</h4>
+            <form action="handler.php" method="post">
+                <input type="hidden" name="user_id">
+                <p>
+                    <label for="lat">Latitude</label>
+                    <input type="number" name="lat">
+                </p>
+                <p>
+                    <label for="lng">Longitude</label>
+                    <input type="number" name="lng">
+                </p>
+                <p>
+                    <label for="radius">Circular area radius</label>
+                    <input type="number" name="radius">
+                </p>
+                <p>
+                    <label for="name">Harbour name</label>
+                    <input type="text" name="name">
+                </p>
+                <p>
+                    <input type="button" value="Add this harbour to the database">
+                </p>
+            </form>
+            <h4>Remove a wrong harbour</h4>
+            <p>...</p>
         </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $MAPS_API_KEY; ?>&callback=initMap" async defer></script>
