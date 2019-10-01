@@ -59,7 +59,7 @@ require("../config.php");
                 <button type="submit" class="btn btn-primary">Add this harbour to the database</button>
             </form>
             <h4>Remove a wrong harbour</h4>
-            <p>...</p>
+            <p>... click on the map to select an existing harbour ...</p>
             <button type="submit" class="btn btn-danger">Remove the selected harbour from the database</button>
         </div>
     </div>
