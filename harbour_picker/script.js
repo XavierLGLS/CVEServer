@@ -1,4 +1,5 @@
 var map;
+var currentMarker;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -8,5 +9,18 @@ function initMap() {
     map.addListener('dblclick', function (e) {
         document.querySelector('input[name="lat"]').value = e.latLng.lat();
         document.querySelector('input[name="lng"]').value = e.latLng.lng();
+        updateMarkerLocation(e.latLng);
     });
+    map.setOptions({ disableDoubleClickZoom: true });
+}
+
+function updateMarkerLocation(latLng) {
+    if (currentMarker == undefined) {
+        currentMarker = new google.maps.Marker({
+            position: latLng,
+            map: map
+        });
+    } else {
+        currentMarker.setPosition(latLng);
+    }
 }
