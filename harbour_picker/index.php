@@ -40,28 +40,27 @@ require("../config.php");
             <h4>Add a new harbour</h4>
             <form action="handler.php" method="post">
                 <input type="hidden" name="user_id">
-                <p>
-                    <label for="lat">Latitude (double click the map to fill in)</label>
-                    <input type="number" name="lat">
-                </p>
-                <p>
-                    <label for="lng">Longitude (double click the map to fill in)</label>
-                    <input type="number" name="lng">
-                </p>
-                <p>
-                    <label for="radius">Circular area radius</label>
-                    <input type="number" name="radius" placeholder="m">
-                </p>
-                <p>
-                    <label for="name">Harbour name</label>
-                    <input type="text" name="name" placeholder="be concise">
-                </p>
-                <p>
-                    <input type="button" value="Add this harbour to the database">
-                </p>
+                <div class="form-group">
+                    <label for="lat">Latitude</label>
+                    <input type="number" class="form-control" name="lat" placeholder="dble click the map to fill in">
+                </div>
+                <label for="lng">Longitude</label>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="lng" placeholder="dble click the map to fill in">
+                </div>
+                <label for="radius">Circular area radius</label>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="radius" placeholder="m">
+                </div>
+                <label for="name">Harbour name</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="be concise">
+                </div>
+                <button type="submit" class="btn btn-primary">Add this harbour to the database</button>
             </form>
             <h4>Remove a wrong harbour</h4>
             <p>...</p>
+            <button type="submit" class="btn btn-danger">Remove the selected harbour from the database</button>
         </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $MAPS_API_KEY; ?>&callback=initMap" async defer></script>
