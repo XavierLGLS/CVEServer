@@ -5,6 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 require("../config.php");
 require("../db.php");
 $db = new DB();
+$_SESSION["auth"] = NULL;
 
 if (!empty($_POST)) {
     switch ($_POST['form']) {

@@ -16,8 +16,9 @@ class DB
     public function isHarbourPickerRegistered($username, $password)
     {
         //Returns true id the user is registered
-        $req = $this->db->query("SELECT * FROM harbour_pickers WHERE name=$username AND password=$password");
-        if ($req->fetch()) {
+        $req = $this->db->prepare("SELECT count(*) FROM harbour_pickers WHERE name=? AND password=?");
+        $req->execute(array($username, $password));
+        if ($req->fetchColumn() > 0) {
             return true;
         } else {
             return false;
