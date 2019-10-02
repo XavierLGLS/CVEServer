@@ -1,5 +1,18 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require("../config.php");
+
+if (!empty($_POST)) {
+    switch ($_POST['form']) {
+        case "login":
+            echo "<div>login</div>";
+            //TODO: if login succes set $_SESSION["auth"]
+            break;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,30 +50,47 @@ require("../config.php");
             <div id="map" style="height: 500px;"></div>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <h4>Add a new harbour</h4>
-            <form action="handler.php" method="post">
-                <input type="hidden" name="user_id">
-                <div class="form-group">
-                    <label for="lat">Latitude</label>
-                    <input type="number" class="form-control" name="lat" step="0.001" placeholder="dble click the map to fill in">
-                </div>
-                <label for="lng">Longitude</label>
-                <div class="form-group">
-                    <input type="number" class="form-control" name="lng" step="0.001" placeholder="dble click the map to fill in">
-                </div>
-                <label for="radius">Circular area radius</label>
-                <div class="form-group">
-                    <input type="number" class="form-control" name="radius" placeholder="m">
-                </div>
-                <label for="name">Harbour name</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="be concise">
-                </div>
-                <button type="submit" class="btn btn-primary">Add this harbour to the database</button>
-            </form>
-            <h4>Remove a wrong harbour</h4>
-            <p>... click on the map to select an existing harbour ...</p>
-            <button type="submit" class="btn btn-danger">Remove the selected harbour from the database</button>
+            <?php if ($_SESSION["auth"]) { ?>
+                <!-- IF REGISTERED -->
+                <h3>Add a new harbour</h3>
+                <form action="handler.php" method="post">
+                    <input type="hidden" name="user_id">
+                    <div class="form-group">
+                        <label for="lat">Latitude</label>
+                        <input type="number" class="form-control" name="lat" step="0.001" placeholder="dble click the map to fill in" required>
+                    </div>
+                    <label for="lng">Longitude</label>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="lng" step="0.001" placeholder="dble click the map to fill in" required>
+                    </div>
+                    <label for="radius">Circular area radius</label>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="radius" placeholder="m" required>
+                    </div>
+                    <label for="name">Harbour name</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder="be concise" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add this harbour to the database</button>
+                </form>
+                <h3>Remove an existing harbour</h3>
+                <p>... click on the map to select an existing harbour ...</p>
+                <button type="submit" class="btn btn-danger">Remove the selected harbour from the database</button>
+            <?php } else { ?>
+                <!-- IF NOT REGISTERED YET -->
+                <form action="" method="post">
+                    <input type="hidden" name="form" value="login">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">login</button>
+                </form>
+            <?php } ?>
         </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $MAPS_API_KEY; ?>&callback=initMap" async defer></script>
