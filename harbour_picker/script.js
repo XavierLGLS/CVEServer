@@ -30,3 +30,13 @@ function updateMarkerLocation(latLng) {
         currentMarker.setPosition(latLng);
     }
 }
+
+$(document).ready(function () {
+    $("add_harbour").click(function (event) {
+        event.preventDefault();
+        console.log(event)
+        // $.post("handler.php", function (result) {
+        //     $("div.result").html(result);
+        // });
+    });
+});

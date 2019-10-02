@@ -74,7 +74,7 @@ if (!empty($_POST)) {
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="be concise" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add this harbour to the database</button>
+                    <button id="add_harbour" type="submit" class="btn btn-primary">Add this harbour to the database</button>
                 </form>
                 <h3>Import harbours from a csv file</h3>
                 <p>... to implement ...</p>
