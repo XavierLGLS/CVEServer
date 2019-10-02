@@ -70,18 +70,16 @@ if (!empty($_POST)) {
                     <div class="form-group">
                         <input type="number" class="form-control" name="lng" step="0.001" placeholder="dble click the map to fill in" required>
                     </div>
-                    <label for="radius">Circular area radius</label>
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="radius" placeholder="m" required>
-                    </div>
                     <label for="name">Harbour name</label>
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="be concise" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Add this harbour to the database</button>
                 </form>
+                <h3>Import harbours from a csv file</h3>
+                <p>... to implement ...</p>
                 <h3>Remove an existing harbour</h3>
-                <p>... click on the map to select an existing harbour ...</p>
+                <p>... to implement ...</p>
                 <button type="submit" class="btn btn-danger">Remove the selected harbour from the database</button>
             <?php } else { ?>
                 <!-- IF NOT REGISTERED YET -->
