@@ -7,8 +7,14 @@ function initMap() {
         zoom: 3
     });
     map.addListener('dblclick', function (e) {
-        document.querySelector('input[name="lat"]').value = Math.round(1000 * e.latLng.lat()) / 1000;
-        document.querySelector('input[name="lng"]').value = Math.round(1000 * e.latLng.lng()) / 1000;
+        var inputLat = document.querySelector('input[name="lat"]');
+        if (inputLat != null) {
+            inputLat.value = Math.round(1000 * e.latLng.lat()) / 1000;
+        }
+        var inputLng = document.querySelector('input[name="lng"]');
+        if (inputLng != null) {
+            inputLng.value = Math.round(1000 * e.latLng.lng()) / 1000;
+        }
         updateMarkerLocation(e.latLng);
     });
     map.setOptions({ disableDoubleClickZoom: true });

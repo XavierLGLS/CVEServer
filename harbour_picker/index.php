@@ -3,12 +3,17 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 require("../config.php");
+require("../db.php");
+$db = new DB();
 
 if (!empty($_POST)) {
     switch ($_POST['form']) {
         case "login":
             echo "<div>login</div>";
             //TODO: if login succes set $_SESSION["auth"]
+            if ($db->isHarbourPickerRegistered($_POST[''], $_POST[''])) {
+                $_SESSION["auth"] = true;
+            }
             break;
     }
 }
