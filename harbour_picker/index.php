@@ -10,9 +10,9 @@ if (!empty($_POST)) {
     switch ($_POST['form']) {
         case "login":
             if ($db->isHarbourPickerRegistered(htmlspecialchars($_POST['username']), htmlspecialchars($_POST['password']))) {
-                $_SESSION["auth"] = 1;
+                $_SESSION["auth"] = htmlspecialchars($_POST['username']);
             } else {
-                $_SESSION["auth"] = -1;
+                $_SESSION["auth"] = NULL;
             }
             break;
     }
@@ -57,6 +57,7 @@ if (!empty($_POST)) {
         <div class="col-xs-12 col-sm-6">
             <?php if ($_SESSION["auth"]) { ?>
                 <!-- IF REGISTERED -->
+                <p>Hello <?php echo $_SESSION["auth"]; ?> !</p>
                 <h3>Add a new harbour</h3>
                 <form action="handler.php" method="post">
                     <input type="hidden" name="user_id">
@@ -95,7 +96,7 @@ if (!empty($_POST)) {
                     </div>
                     <button type="submit" class="btn btn-primary">login</button>
                 </form>
-                <?php if ($_SESSION["auth"] == -1) { ?>
+                <?php if (!empty($_POST)) { ?>
                     <div class="alert alert-danger">The authentication failed</div>
                 <?php }
         } ?>

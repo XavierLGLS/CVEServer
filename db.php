@@ -13,22 +13,24 @@ class DB
         $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     }
 
-    public function isHarbourPickerRegistered($username, $password){
+    public function isHarbourPickerRegistered($username, $password)
+    {
         //Returns true id the user is registered
-        $req = $this->db->prepare("SELECT * FROM harbour_pickers WHERE name=? AND password=?");
-        $req->execute(array($username, $password));
-        while($user = $req->fetch()){
+        $req = $this->db->query("SELECT * FROM harbour_pickers WHERE name=$username AND password=$password");
+        if ($req->fetch()) {
             return true;
-            break;
+        } else {
+            return false;
         }
-        return false; 
     }
 
-    public function insertANewHarbour($name, $lat, $lng){
+    public function insertANewHarbour($name, $lat, $lng)
+    {
         //TODO
     }
 
-    public function removeAnHarbour($id){
+    public function removeAnHarbour($id)
+    {
         //TODO
     }
 }
