@@ -9,11 +9,9 @@ $db = new DB();
 if (!empty($_POST)) {
     switch ($_POST['form']) {
         case "login":
-            echo "<div>login</div>";
-            //TODO: if login succes set $_SESSION["auth"]
-            if ($db->isHarbourPickerRegistered($_POST[''], $_POST[''])) {
+            if ($db->isHarbourPickerRegistered(htmlspecialchars($_POST['username']), htmlspecialchars($_POST['password']))) {
                 $_SESSION["auth"] = 1;
-            }else{
+            } else {
                 $_SESSION["auth"] = -1;
             }
             break;
@@ -97,9 +95,10 @@ if (!empty($_POST)) {
                     </div>
                     <button type="submit" class="btn btn-primary">login</button>
                 </form>
-            <?php if($_SESSION["auth"] == -1){?>
-                <div class="alert alert-danger">The authentication failed</div>
-            <?php } } ?>
+                <?php if ($_SESSION["auth"] == -1) { ?>
+                    <div class="alert alert-danger">The authentication failed</div>
+                <?php }
+        } ?>
         </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $MAPS_API_KEY; ?>&callback=initMap" async defer></script>
