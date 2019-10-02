@@ -15,8 +15,12 @@ class DB
 
     public function isHarbourPickerRegistered($username, $password){
         //Returns true id the user is registered
-        // TODO
-        return true; 
+        $req = $this->db->query("SELECT * FROM harbour_pickers WHERE name=? AND password=?");
+        while($user = $req->fetch()){
+            return true;
+            break;
+        }
+        return false; 
     }
 
     public function insertANewHarbour($name, $lat, $lng){
