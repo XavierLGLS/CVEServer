@@ -58,7 +58,7 @@ if (!empty($_POST)) {
         <div class="col-xs-12 col-sm-6">
             <?php if ($_SESSION["auth"]) { ?>
                 <!-- IF REGISTERED -->
-                <p>Hello <?php echo $_SESSION["auth"]; ?> !</p>
+                <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]; ?> !</p>
                 <h3>Add a new harbour</h3>
                 <form action="handler.php" method="post">
                     <input type="hidden" name="user_id">
@@ -95,9 +95,11 @@ if (!empty($_POST)) {
                     </div>
                     <button type="submit" class="btn btn-primary">login</button>
                 </form>
-                <?php if (!empty($_POST)) { if($_POST['form'] == "login"){ ?>
-                    <div class="alert alert-danger">The authentication failed</div>
-                <?php }}
+                <?php if (!empty($_POST)) {
+                    if ($_POST['form'] == "login") { ?>
+                        <div class="alert alert-danger">The authentication failed</div>
+                    <?php }
+            }
         } ?>
         </div>
     </div>
