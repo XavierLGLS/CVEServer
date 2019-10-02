@@ -95,9 +95,9 @@ if (!empty($_POST)) {
                     </div>
                     <button type="submit" class="btn btn-primary">login</button>
                 </form>
-                <?php if (!empty($_POST)) { ?>
+                <?php if (!empty($_POST)) { if($_POST['form'] == "login"){ ?>
                     <div class="alert alert-danger">The authentication failed</div>
-                <?php }
+                <?php }}
         } ?>
         </div>
     </div>
