@@ -32,11 +32,11 @@ function updateMarkerLocation(latLng) {
 }
 
 $(document).ready(function () {
-    $("add_harbour").click(function (event) {
-        event.preventDefault();
+    $('#add-form').submit(function (event) {
         console.log(event)
-        // $.post("handler.php", function (result) {
-        //     $("div.result").html(result);
-        // });
+        $.post("handler.php",{name: "default", lat:"1", lng:"2"}, function (result) {
+            alert("succes");
+        });
+        event.preventDefault();
     });
 });

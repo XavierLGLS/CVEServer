@@ -60,7 +60,7 @@ if (!empty($_POST)) {
                 <!-- IF REGISTERED -->
                 <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]; ?> !</p>
                 <h3>Add a new harbour</h3>
-                <form action="handler.php" method="post">
+                <form id="add-form" action="handler.php" method="post">
                     <input type="hidden" name="user_id">
                     <div class="form-group">
                         <label for="lat">Latitude</label>
@@ -74,7 +74,7 @@ if (!empty($_POST)) {
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="be concise" required>
                     </div>
-                    <button id="add_harbour" type="submit" class="btn btn-primary">Add this harbour to the database</button>
+                    <button type="submit" class="btn btn-primary">Add this harbour to the database</button>
                 </form>
                 <h3>Import harbours from a csv file</h3>
                 <p>... to implement ...</p>
