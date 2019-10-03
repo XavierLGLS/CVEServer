@@ -58,7 +58,7 @@ if (!empty($_POST)) {
         <div class="col-xs-12 col-sm-6">
             <?php if ($_SESSION["auth"]) { ?>
                 <!-- IF REGISTERED -->
-                <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]; ?> !</p>
+                <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]; ?>, thank you for your contribution !</p>
                 <h3>Add a new harbour</h3>
                 <form id="add-form" action="handler.php" method="post">
                     <input type="hidden" name="user_id">
@@ -74,13 +74,13 @@ if (!empty($_POST)) {
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="be concise" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add this harbour to the database</button>
+                    <button type="submit" class="btn btn-primary">Add this harbour</button>
                 </form>
                 <h3>Import harbours from a csv file</h3>
                 <p>... to implement ...</p>
-                <h3>Remove an existing harbour</h3>
+                <h3>Remove harbours</h3>
                 <p>... to implement ...</p>
-                <button type="submit" class="btn btn-danger">Remove the selected harbour from the database</button>
+                <button id="remove" class="btn btn-danger">Remove all selected harbours</button>
             <?php } else { ?>
                 <!-- IF NOT REGISTERED YET -->
                 <form action="" method="post">

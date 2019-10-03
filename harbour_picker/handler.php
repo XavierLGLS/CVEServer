@@ -14,5 +14,8 @@ if (isset($_POST["request"])) {
             $harbours = $db->getAllHarbours();
             echo json_encode($harbours);
             break;
+            case "remove":
+            $db->removeHarbours($_POST["list"]);
+            break;
     }
 }

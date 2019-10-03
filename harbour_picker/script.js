@@ -63,11 +63,11 @@ function displayStoredHarbours(list) {
             if (selectedHarbourIds.includes(this.harbour_id)) {
                 selectedHarbourIds = selectedHarbourIds.filter(id => id != this.harbour_id);
                 selectedMarkers = selectedMarkers.filter(marker => marker.harbour_id != this.harbour_id);
-                this.setIcon({url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"});
+                this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
             } else {
                 selectedHarbourIds.push(this.harbour_id);
                 selectedMarkers.push(this);
-                this.setIcon({url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"});
+                this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png" });
             }
             console.log(selectedHarbourIds);
         });
@@ -92,5 +92,26 @@ $(document).ready(function () {
             }
         });
         event.preventDefault();
+    });
+
+    $('#remove').click(function () {
+        var confirmString = "";
+        if (confirm(confirmString)) {
+            $.post("handler.php", {
+                request: "remove",
+                list: selectedHarbourIds
+            }, function (result, status) {
+                if (status == "success") {
+                    //TODO: set unvisible
+                    for (var i = 0; i < selectedMarkers.length; i++){
+                        selectedMarkers[i].setVisible(false);
+                    }
+                    selectedHarbourIds = [];
+                    selectedMarkers = [];
+                } else if (status == "timeout" || status == "error") {
+                    console.log("error");
+                }
+            });
+        }
     });
 });

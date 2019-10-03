@@ -30,7 +30,7 @@ class DB
         $this->db->query("INSERT INTO harbours (name, lat, lng) VALUES ('$name', $lat, $lng)");
     }
 
-    public function removeAnHarbour($id)
+    public function removeHarbours($idList)
     {
         //TODO
     }
