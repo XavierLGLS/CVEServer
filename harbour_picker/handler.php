@@ -9,5 +9,10 @@ if (isset($_POST["request"])) {
                 $db->insertANewHarbour($_POST["name"], floatval($_POST["lat"]), floatval($_POST["lng"]));
             }
             break;
+            case "get":
+            // returns a json that contains the list of all registered harbours
+            $harbours = $db->getAllHarbours();
+            echo json_encode($harbours);
+            break;
     }
 }

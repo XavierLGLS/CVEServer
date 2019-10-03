@@ -33,9 +33,17 @@ function updateMarkerLocation(latLng) {
 
 $(document).ready(function () {
     $('#add-form').submit(function (event) {
-        console.log(event)
-        $.post("handler.php",{request: "add", name: "default", lat:"1", lng:"2"}, function (result) {
-            alert("succes");
+        $.post("handler.php", {
+            request: "add",
+            name: $('#add-form input[name="name"]').val(),
+            lat: $('#add-form input[name="lat"]').val(),
+            lng: $('#add-form input[name="lng"]').val()
+        }, function (result, status) {
+            if (status == "success") {
+                $('#add-form')[0].reset();
+            } else if (status == "timeout" || status == "error") {
+                console.log("error");
+            }
         });
         event.preventDefault();
     });

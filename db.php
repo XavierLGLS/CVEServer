@@ -34,4 +34,13 @@ class DB
     {
         //TODO
     }
+
+    public function getAllHarbours()
+    {
+        $output = array();
+        foreach($this->db->query("SELECT * FROM harbours") as $row){
+            array_push($output, $row);
+        }
+        return $output;
+    }
 }
