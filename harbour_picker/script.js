@@ -69,7 +69,6 @@ function displayStoredHarbours(list) {
                 selectedMarkers.push(this);
                 this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png" });
             }
-            console.log(selectedHarbourIds);
         });
     }
 }
@@ -102,7 +101,7 @@ $(document).ready(function () {
         if (confirm(confirmString)) {
             $.post("handler.php", {
                 request: "remove",
-                list: JSON.stringify(selectedHarbourIds)
+                list: {ids: JSON.stringify(selectedHarbourIds)}
             }, function (result, status) {
                 if (status == "success") {
                     for (var i = 0; i < selectedMarkers.length; i++) {
