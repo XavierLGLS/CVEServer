@@ -9,13 +9,13 @@ if (isset($_POST["request"])) {
                 $db->insertANewHarbour($_POST["name"], floatval($_POST["lat"]), floatval($_POST["lng"]));
             }
             break;
-            case "get":
+        case "get":
             // returns a json that contains the list of all registered harbours
             $harbours = $db->getAllHarbours();
             echo json_encode($harbours);
             break;
-            case "remove":
-            $db->removeHarbours($_POST["list"]);
+        case "remove":
+            $db->removeHarbours(json_decode($_POST["list"]));
             break;
     }
 }

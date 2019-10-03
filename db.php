@@ -32,13 +32,15 @@ class DB
 
     public function removeHarbours($idList)
     {
-        //TODO
+        for ($x = 0; $x <= count($idList); $x++) {
+            $this->db->query("DELETE FROM harbours WHERE harbour_id=" . $idList($x));
+        }
     }
 
     public function getAllHarbours()
     {
         $output = array();
-        foreach($this->db->query("SELECT * FROM harbours") as $row){
+        foreach ($this->db->query("SELECT * FROM harbours") as $row) {
             array_push($output, $row);
         }
         return $output;

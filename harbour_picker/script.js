@@ -95,15 +95,17 @@ $(document).ready(function () {
     });
 
     $('#remove').click(function () {
-        var confirmString = "";
+        var confirmString = "Do you really want to remove";
+        for (var i = 0; i < selectedMarkers.length; i++) {
+            confirmString += ("\n - " + selectedMarkers[i].title);
+        }
         if (confirm(confirmString)) {
             $.post("handler.php", {
                 request: "remove",
                 list: selectedHarbourIds
             }, function (result, status) {
                 if (status == "success") {
-                    //TODO: set unvisible
-                    for (var i = 0; i < selectedMarkers.length; i++){
+                    for (var i = 0; i < selectedMarkers.length; i++) {
                         selectedMarkers[i].setVisible(false);
                     }
                     selectedHarbourIds = [];
