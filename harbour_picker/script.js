@@ -34,7 +34,7 @@ function updateMarkerLocation(latLng) {
 $(document).ready(function () {
     $('#add-form').submit(function (event) {
         console.log(event)
-        $.post("handler.php",{name: "default", lat:"1", lng:"2"}, function (result) {
+        $.post("handler.php",{request: "add", name: "default", lat:"1", lng:"2"}, function (result) {
             alert("succes");
         });
         event.preventDefault();

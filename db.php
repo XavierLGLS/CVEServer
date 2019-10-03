@@ -27,7 +27,7 @@ class DB
 
     public function insertANewHarbour($name, $lat, $lng)
     {
-        $this->db->query("INSERT INTO harbours (name, lat, lng) VALUES ($name, $lat, $lng)");
+        $this->db->query("INSERT INTO harbours (name, lat, lng) VALUES ('$name', $lat, $lng)");
     }
 
     public function removeAnHarbour($id)
