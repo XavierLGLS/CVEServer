@@ -1,5 +1,7 @@
 var map;
 var currentMarker;
+var selectedHarbourIds = [];
+var selectedMarkers = [];
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -21,20 +23,23 @@ function initMap() {
 
     //get all stored harbours
     $.post("handler.php", {
-            request: "get"
-        }, function (result, status) {
-            if (status == "success") {
-                displayStoredHarbours(JSON.parse(result));
-            } else if (status == "timeout" || status == "error") {
-                console.log("error");
-            }
-        });
+        request: "get"
+    }, function (result, status) {
+        if (status == "success") {
+            displayStoredHarbours(JSON.parse(result));
+        } else if (status == "timeout" || status == "error") {
+            console.log("error");
+        }
+    });
 }
 
 function updateMarkerLocation(latLng, title) {
     if (currentMarker == undefined) {
         currentMarker = new google.maps.Marker({
             position: latLng,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            },
             map: map
         });
     } else {
@@ -42,14 +47,30 @@ function updateMarkerLocation(latLng, title) {
     }
 }
 
-function displayStoredHarbours(list){
-    for(var i = 0; i < list.length; i++){
+function displayStoredHarbours(list) {
+    for (var i = 0; i < list.length; i++) {
         var harbour = list[i];
         var tempMarker = new google.maps.Marker({
-            position: {lat: parseFloat(harbour["lat"]), lng: parseFloat(harbour["lng"])},
+            position: { lat: parseFloat(harbour["lat"]), lng: parseFloat(harbour["lng"]) },
             title: harbour["name"],
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+            },
+            harbour_id: parseInt(harbour["harbour_id"]),
             map: map
-        }); 
+        });
+        tempMarker.addListener("click", function () {
+            if (selectedHarbourIds.includes(this.harbour_id)) {
+                selectedHarbourIds = selectedHarbourIds.filter(id => id != this.harbour_id);
+                selectedMarkers = selectedMarkers.filter(marker => marker.harbour_id != this.harbour_id);
+                this.setIcon({url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"});
+            } else {
+                selectedHarbourIds.push(this.harbour_id);
+                selectedMarkers.push(this);
+                this.setIcon({url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"});
+            }
+            console.log(selectedHarbourIds);
+        });
     }
 }
 
@@ -63,6 +84,7 @@ $(document).ready(function () {
         }, function (result, status) {
             if (status == "success") {
                 currentMarker.setTitle($('#add-form input[name="name"]').val());
+                currentMarker.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
                 currentMarker = null;
                 $('#add-form')[0].reset();
             } else if (status == "timeout" || status == "error") {
