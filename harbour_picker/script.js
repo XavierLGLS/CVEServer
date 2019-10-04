@@ -101,7 +101,7 @@ $(document).ready(function () {
         if (confirm(confirmString)) {
             $.post("handler.php", {
                 request: "remove",
-                list: {ids: JSON.stringify(selectedHarbourIds)}
+                list: {list: JSON.stringify(selectedHarbourIds)}
             }, function (result, status) {
                 if (status == "success") {
                     for (var i = 0; i < selectedMarkers.length; i++) {

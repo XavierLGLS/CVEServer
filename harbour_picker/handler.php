@@ -15,8 +15,7 @@ if (isset($_POST["request"])) {
             echo json_encode($harbours);
             break;
         case "remove":
-            $json = json_decode($_POST["list"]);
-            $db->removeHarbours($json["ids"]);
+            $db->removeHarbours(json_decode($_POST["list"]["list"], true));
             break;
     }
 }

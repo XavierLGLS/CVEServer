@@ -32,8 +32,8 @@ class DB
 
     public function removeHarbours($idList)
     {
-        for ($x = 0; $x <= count($idList); $x++) {
-            $this->db->query("DELETE FROM harbours WHERE harbour_id=" . $idList($x));
+        foreach($idList as $id) {
+            $this->db->query("DELETE FROM harbours WHERE harbour_id=" . $id);
         }
     }
 
