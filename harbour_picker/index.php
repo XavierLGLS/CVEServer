@@ -45,6 +45,27 @@ if (!empty($_POST)) {
             margin: 0;
             padding: 0;
         }
+
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
     </style>
 </head>
 
@@ -77,9 +98,18 @@ if (!empty($_POST)) {
                     <button type="submit" class="btn btn-primary">Add this harbour</button>
                 </form>
                 <h3>Import harbours from a csv file</h3>
-                <p>... to implement ...</p>
+                <div class="custom-file">
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                                Browse&hellip; <input type="file" id="file-input" style="display: none;">
+                            </span>
+                        </label>
+                        <input type="text" id="file-name-display" class="form-control" readonly>
+                    </div>
+                    <p class="help-block">l'extension du fichier doit être <strong>.gpx</strong></p>
+                </div>
                 <h3>Remove harbours</h3>
-                <p>... to implement ...</p>
                 <button id="remove" class="btn btn-danger">Remove all selected harbours</button>
             <?php } else { ?>
                 <!-- IF NOT REGISTERED YET -->
