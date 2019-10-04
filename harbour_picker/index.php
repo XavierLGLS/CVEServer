@@ -107,7 +107,7 @@ if (!empty($_POST)) {
                         </label>
                         <input type="text" id="file-name-display" class="form-control" readonly>
                     </div>
-                    <p class="help-block">l'extension du fichier doit être <strong>.gpx</strong></p>
+                    <p class="help-block">the <strong>.csv</strong> file structure must be lat;lng;name (without header)</p>
                 </div>
                 <h3>Remove harbours</h3>
                 <button id="remove" class="btn btn-danger">Remove all selected harbours</button>
