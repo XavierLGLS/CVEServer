@@ -5,8 +5,8 @@ $db = new DB();
 if (isset($_POST["request"])) {
     switch ($_POST["request"]) {
         case "add":
-            if (isset($_POST["name"]) and isset($_POST["lat"]) and isset($_POST["lng"])) {
-                $db->insertANewHarbour($_POST["name"], floatval($_POST["lat"]), floatval($_POST["lng"]));
+            if (isset($_POST["name"]) and isset($_POST["lat"]) and isset($_POST["lng"]) and isset($_POST["user_id"])) {
+                $db->insertANewHarbour($_POST["name"], floatval($_POST["lat"]), floatval($_POST["lng"]), intval($_POST["user_id"]));
             }
             break;
         case "get":
