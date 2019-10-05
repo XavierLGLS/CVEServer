@@ -1,33 +1,10 @@
-# General project management
+# roadmap
 
-TODO:
-- [x] create a git repo
-- [ ] define intermediate projects (and their api)
-
-# Server content
-
-#### Configuration
-
-* SW_API_PULL_RATE
-
-#### Periodic task
-
-pull and handle of all needed data from the sailaway api every SW_API_PULL_RATE minutes
-
-TODO:
-* definition of calculation processes
-* check server performance
-
-#### Admin panel
-
-Manage the list of all players that use this addon (feature: manual remove of very old accounts ?)
-
-#### Client side API
-
-TODO:
-* to define
-
-#### Database
-
-* all players that use the addon
-* to be defined
+## Harbour picker tool
+- [x] add harbour feature
+- [x] remove harbour feature
+- [x] multi selection (click on each server)
+- [ ] multi selection by area
+- [ ] CSV file data import
+## CVE server
+- [ ] registration system
