@@ -10,7 +10,7 @@ if (isset($_POST["request"])) {
                 $user_id = $data->user_id;
                 $list = $data->list;
                 foreach ($list as $row) {
-                    $db->insertANewHarbour($row->name, floatval($row->lat), floatval($row->lng), intval($user->id));
+                    $db->insertANewHarbour($row->name, floatval($row->lat), floatval($row->lng), intval($user_id));
                 }
             }
             break;
