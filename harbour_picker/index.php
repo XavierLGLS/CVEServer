@@ -72,7 +72,7 @@ if (!empty($_POST)) {
 <body>
     <div class="container">
         <h1>Harbour picker</h1>
-        <p>This tool fill the database that stores all harbours where players will be able to make deals.</p>
+        <p>This tool fills the database that stores all harbours where players will be able to make deals.</p>
         <div class="col-xs-12 col-sm-6">
             <div id="map" style="height: 500px;"></div>
         </div>
