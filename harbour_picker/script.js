@@ -73,24 +73,74 @@ function displayStoredHarbours(list) {
     }
 }
 
-$(document).ready(function () {
-    $('#add-form').submit(function (event) {
-        $.post("handler.php", {
-            request: "add",
-            user_id: $('#add-form input[name="user_id"]').val(),
-            name: $('#add-form input[name="name"]').val(),
-            lat: $('#add-form input[name="lat"]').val(),
-            lng: $('#add-form input[name="lng"]').val()
-        }, function (result, status) {
-            if (status == "success") {
-                currentMarker.setTitle($('#add-form input[name="name"]').val());
-                currentMarker.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
-                currentMarker = null;
-                $('#add-form')[0].reset();
-            } else if (status == "timeout" || status == "error") {
-                console.log("error");
+function sendHarbours(list, sender) {
+    //TODO: handle sender
+    var json = {};
+    json.user_id = $('#add-form input[name="user_id"]').val();
+    json.list = list;
+    $.post("handler.php", {
+        request: "add",
+        data: json
+    }, function (result, status) {
+        if (status == "success") {
+            //TODO
+            console.log("add success");
+        } else if (status == "timeout" || status == "error") {
+            console.log("error");
+        }
+    });
+}
+
+function csvImporterSetup() {
+    var fileInput = document.getElementById("file-input");
+    var fileReader = new FileReader();
+
+    fileReader.addEventListener("loadstart", function () {
+        var fileName = fileInput.files[0].name;
+        var names = fileName.split(".");
+        var name = names.splice(0, names.length - 1).join(".");
+        document.getElementById("file-name-display").value = "importing " + name + "...";
+    });
+
+    fileReader.addEventListener("load", function () {
+        var list = [];
+        var fileContent = $.csv.toArrays(fileReader.result);
+        fileContent.forEach(row => {
+            var content = row[0].split(';');
+            if (content[0] != "Latitude") {
+                var obj = {};
+                obj.lat = content[0];
+                obj.lng = content[1];
+                obj.name = content[2];
+                list.push(obj);
             }
         });
+        sendHarbours(list);
+    });
+
+    fileInput.addEventListener("change", function () {
+        fileReader.readAsText(this.files[0]);
+    });
+}
+
+$(document).ready(function () {
+    $('#add-form').submit(function (event) {
+        // $.post("handler.php", {
+        //     request: "add",
+        //     user_id: $('#add-form input[name="user_id"]').val(),
+        //     name: $('#add-form input[name="name"]').val(),
+        //     lat: $('#add-form input[name="lat"]').val(),
+        //     lng: $('#add-form input[name="lng"]').val()
+        // }, function (result, status) {
+        //     if (status == "success") {
+        //         currentMarker.setTitle($('#add-form input[name="name"]').val());
+        //         currentMarker.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
+        //         currentMarker = null;
+        //         $('#add-form')[0].reset();
+        //     } else if (status == "timeout" || status == "error") {
+        //         console.log("error");
+        //     }
+        // });
         event.preventDefault();
     });
 
@@ -102,7 +152,7 @@ $(document).ready(function () {
         if (confirm(confirmString)) {
             $.post("handler.php", {
                 request: "remove",
-                list: {list: JSON.stringify(selectedHarbourIds)}
+                list: { list: JSON.stringify(selectedHarbourIds) }
             }, function (result, status) {
                 if (status == "success") {
                     for (var i = 0; i < selectedMarkers.length; i++) {
@@ -116,4 +166,6 @@ $(document).ready(function () {
             });
         }
     });
+
+    csvImporterSetup();
 });

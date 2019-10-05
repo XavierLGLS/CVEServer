@@ -5,8 +5,13 @@ $db = new DB();
 if (isset($_POST["request"])) {
     switch ($_POST["request"]) {
         case "add":
-            if (isset($_POST["name"]) and isset($_POST["lat"]) and isset($_POST["lng"]) and isset($_POST["user_id"])) {
-                $db->insertANewHarbour($_POST["name"], floatval($_POST["lat"]), floatval($_POST["lng"]), intval($_POST["user_id"]));
+            if (isset($_POST["data"])) {
+                $data = json_decode($_POST["data"]);
+                $user_id = $data->user_id;
+                $list = $data->list;
+                foreach ($list as $row) {
+                    $db->insertANewHarbour($row->name, floatval($row->lat), floatval($row->lng), intval($user->id));
+                }
             }
             break;
         case "get":
