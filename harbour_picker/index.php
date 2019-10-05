@@ -10,11 +10,7 @@ $_SESSION["auth"] = NULL;
 if (!empty($_POST)) {
     switch ($_POST['form']) {
         case "login":
-            if ($db->isHarbourPickerRegistered(htmlspecialchars($_POST['username']), htmlspecialchars($_POST['password']))) {
-                $_SESSION["auth"] = htmlspecialchars($_POST['username']);
-            } else {
-                $_SESSION["auth"] = NULL;
-            }
+            $_SESSION["auth"] = $db->harbourPickerLogin(htmlspecialchars($_POST['username']), htmlspecialchars($_POST['password']));
             break;
     }
 }
@@ -79,10 +75,10 @@ if (!empty($_POST)) {
         <div class="col-xs-12 col-sm-6">
             <?php if ($_SESSION["auth"]) { ?>
                 <!-- IF REGISTERED -->
-                <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]; ?>, thank you for your contribution !</p>
+                <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]["name"]; ?>, thank you for your contribution !</p>
                 <h3>Add a new harbour</h3>
                 <form id="add-form" action="handler.php" method="post">
-                    <input type="hidden" name="user_id">
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION["auth"]["user_id"]; ?>">
                     <div class="form-group">
                         <label for="lat">Latitude</label>
                         <input type="number" class="form-control" name="lat" step="0.001" placeholder="dble click the map to fill in" required>

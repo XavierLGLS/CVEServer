@@ -77,6 +77,7 @@ $(document).ready(function () {
     $('#add-form').submit(function (event) {
         $.post("handler.php", {
             request: "add",
+            user_id: $('#add-form input[name="user_id"]').val(),
             name: $('#add-form input[name="name"]').val(),
             lat: $('#add-form input[name="lat"]').val(),
             lng: $('#add-form input[name="lng"]').val()
