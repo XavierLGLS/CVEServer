@@ -87,7 +87,7 @@ function sendHarbours(list, sender) {
                 currentMarker = null;
                 $('#add-form')[0].reset();
             } else if (sender == "csv") {
-                document.getElementById("file-name-display").value = "import of " + name + " done";
+                document.getElementById("file-name-display").value = "import done";
                 setTimeout(function () {
                     document.getElementById("file-name-display").value = "";
                 }, 3000);
