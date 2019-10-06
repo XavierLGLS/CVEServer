@@ -87,7 +87,10 @@ function sendHarbours(list, sender) {
                 currentMarker = null;
                 $('#add-form')[0].reset();
             } else if (sender == "csv") {
-                //TODO
+                document.getElementById("file-name-display").value = "import of " + name + " done";
+                setTimeout(function () {
+                    document.getElementById("file-name-display").value = "";
+                }, 3000);
             }
             list.forEach(point => {
                 var tempMarker = new google.maps.Marker({
