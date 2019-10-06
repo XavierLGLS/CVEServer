@@ -109,6 +109,7 @@ function sendHarbours(list, sender) {
                         selectedMarkers.push(this);
                         this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png" });
                     }
+                    console.log(selectedHarbourIds);
                 });
             });
         } else if (status == "timeout" || status == "error") {
