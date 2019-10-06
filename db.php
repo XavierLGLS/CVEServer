@@ -30,7 +30,7 @@ class DB
     public function insertANewHarbour($name, $lat, $lng, $user_id)
     {
         $req = $this->db->query("INSERT INTO harbours (name, lat, lng, picker_id) VALUES ('$name', $lat, $lng, $user_id)");
-        return $req->lastInsertId();//lastInsertId()
+        return $this->db->lastInsertId();//lastInsertId()
     }
 
     public function removeHarbours($idList)
