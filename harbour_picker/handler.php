@@ -7,11 +7,18 @@ if (isset($_POST["request"])) {
         case "add":
             if (isset($_POST["data"])) {
                 $data = json_decode($_POST["data"]);
-                $user_id = $data->user_id;
-                $list = $data->list;
+                $user_id = $_POST["data"]["user_id"];
+                $list = $_POST["data"]["list"];
+                $result = array();
                 foreach ($list as $row) {
-                    $db->insertANewHarbour($row->name, floatval($row->lat), floatval($row->lng), intval($user_id));
+                    echo $row["name"] . ' ';
+                    $name = htmlspecialchars($row["name"]);
+                    $name = str_replace("'", "\'", $name);
+                    $name = str_replace('"', '\"', $name);
+                    $id = $db->insertANewHarbour($name, floatval($row["lat"]), floatval($row["lng"]), intval($user_id));
+                    array_push($result, $id);
                 }
+                echo json_encode($result);
             }
             break;
         case "get":

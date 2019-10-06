@@ -74,7 +74,6 @@ function displayStoredHarbours(list) {
 }
 
 function sendHarbours(list, sender) {
-    //TODO: handle sender
     var json = {};
     json.user_id = $('#add-form input[name="user_id"]').val();
     json.list = list;
@@ -83,13 +82,43 @@ function sendHarbours(list, sender) {
         data: json
     }, function (result, status) {
         if (status == "success") {
-            //TODO
-            console.log("add success");
+            // if (sender == "form") {
+            //     currentMarker.setTitle($('#add-form input[name="name"]').val());
+            //     currentMarker.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
+            //     currentMarker = null;
+            //     $('#add-form')[0].reset();
+            // } else if (sender == "csv") {
+            //     list.forEach(point => {
+            //         var tempMarker = new google.maps.Marker({
+            //             position: { lat: parseFloat(point.lat), lng: parseFloat(point.lng) },
+            //             title: point.name,
+            //             icon: {
+            //                 url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+            //             },
+            //             harbour_id: parseInt(harbour["harbour_id"]),
+            //             map: map
+            //         });
+            //         tempMarker.addListener("click", function () {
+            //             if (selectedHarbourIds.includes(this.harbour_id)) {
+            //                 selectedHarbourIds = selectedHarbourIds.filter(id => id != this.harbour_id);
+            //                 selectedMarkers = selectedMarkers.filter(marker => marker.harbour_id != this.harbour_id);
+            //                 this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
+            //             } else {
+            //                 selectedHarbourIds.push(this.harbour_id);
+            //                 selectedMarkers.push(this);
+            //                 this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png" });
+            //             }
+            //         });
+            //     });
+            // }
+            console.log(result);
         } else if (status == "timeout" || status == "error") {
             console.log("error");
         }
     });
 }
+
+
 
 function csvImporterSetup() {
     var fileInput = document.getElementById("file-input");
@@ -115,7 +144,7 @@ function csvImporterSetup() {
                 list.push(obj);
             }
         });
-        sendHarbours(list);
+        sendHarbours(list, "csv");
     });
 
     fileInput.addEventListener("change", function () {
@@ -125,22 +154,12 @@ function csvImporterSetup() {
 
 $(document).ready(function () {
     $('#add-form').submit(function (event) {
-        // $.post("handler.php", {
-        //     request: "add",
-        //     user_id: $('#add-form input[name="user_id"]').val(),
-        //     name: $('#add-form input[name="name"]').val(),
-        //     lat: $('#add-form input[name="lat"]').val(),
-        //     lng: $('#add-form input[name="lng"]').val()
-        // }, function (result, status) {
-        //     if (status == "success") {
-        //         currentMarker.setTitle($('#add-form input[name="name"]').val());
-        //         currentMarker.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
-        //         currentMarker = null;
-        //         $('#add-form')[0].reset();
-        //     } else if (status == "timeout" || status == "error") {
-        //         console.log("error");
-        //     }
-        // });
+        var harbour = [{
+            name: $('#add-form input[name="name"]').val(),
+            lat: $('#add-form input[name="lat"]').val(),
+            lng: $('#add-form input[name="lng"]').val()
+        }];
+        sendHarbours(harbour, "form");
         event.preventDefault();
     });
 
