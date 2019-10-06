@@ -102,6 +102,7 @@ function sendHarbours(list, sender) {
                     harbour_id: parseInt(ids.shift()),
                     map: map
                 });
+                console.log(tempMarker.harbour_id);
                 tempMarker.addListener("click", function () {
                     if (selectedHarbourIds.includes(this.harbour_id)) {
                         selectedHarbourIds = selectedHarbourIds.filter(id => id != this.harbour_id);
