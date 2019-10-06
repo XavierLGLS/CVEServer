@@ -83,7 +83,9 @@ function sendHarbours(list, sender) {
     }, function (result, status) {
         if (status == "success") {
             console.log(result)
-            var ids = result.substring(1, result.length - 2).split(",");
+            var ids = result.substring(1, result.length - 2);
+            console.log(ids);
+            ids = ids.split(",");
             console.log(ids);
             if (sender == "form") {
                 currentMarker = null;
