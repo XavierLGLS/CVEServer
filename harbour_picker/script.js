@@ -82,7 +82,8 @@ function sendHarbours(list, sender) {
         data: json
     }, function (result, status) {
         if (status == "success") {
-            var ids = JSON.parse(result);
+            var ids = JSON.parse("{list: " + result) + "}";
+            ids = ids.list;
             if (sender == "form") {
                 currentMarker.setTitle($('#add-form input[name="name"]').val());
                 currentMarker.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
