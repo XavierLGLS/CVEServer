@@ -82,9 +82,7 @@ function sendHarbours(list, sender) {
         data: json
     }, function (result, status) {
         if (status == "success") {
-            console.log(result)
             var ids = result.replace(/[\"\[\]]/g, "").split(",");
-            console.log(ids);
             if (sender == "form") {
                 currentMarker = null;
                 $('#add-form')[0].reset();
@@ -104,7 +102,6 @@ function sendHarbours(list, sender) {
                     harbour_id: parseInt(ids.shift()),
                     map: map
                 });
-                console.log(tempMarker.harbour_id);
                 tempMarker.addListener("click", function () {
                     if (selectedHarbourIds.includes(this.harbour_id)) {
                         selectedHarbourIds = selectedHarbourIds.filter(id => id != this.harbour_id);
