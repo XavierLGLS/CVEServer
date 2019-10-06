@@ -82,7 +82,9 @@ function sendHarbours(list, sender) {
         data: json
     }, function (result, status) {
         if (status == "success") {
-            var ids = JSON.parse("{list: " + result) + "}";
+            console.log("{list: " + result + "}");
+
+            var ids = JSON.parse("{list: " + result + "}");
             ids = ids.list;
             if (sender == "form") {
                 currentMarker.setTitle($('#add-form input[name="name"]').val());
