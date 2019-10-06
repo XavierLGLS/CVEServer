@@ -82,6 +82,7 @@ function sendHarbours(list, sender) {
         data: json
     }, function (result, status) {
         if (status == "success") {
+            console.log(result)
             var ids = result.substring(1, result.length - 2).split(",");
             console.log(ids);
             if (sender == "form") {
