@@ -11,7 +11,6 @@ if (isset($_POST["request"])) {
                 $list = $_POST["data"]["list"];
                 $result = array();
                 foreach ($list as $row) {
-                    echo $row["name"] . ' ';
                     $name = htmlspecialchars($row["name"]);
                     $name = str_replace("'", "\'", $name);
                     $name = str_replace('"', '\"', $name);
