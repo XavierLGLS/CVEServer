@@ -5,6 +5,6 @@
 - [x] remove harbour feature
 - [x] multi selection (click on each server)
 - [ ] multi selection by area
-- [ ] CSV file data import
+- [x] CSV file data import
 ## CVE server
 - [ ] registration system
