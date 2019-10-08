@@ -73,7 +73,7 @@ function displayStoredHarbours(list) {
     }
 }
 
-function sendHarbours(list, sender) {
+function _sendHarbours(list, sender) {
     var json = {};
     json.user_id = $('#add-form input[name="user_id"]').val();
     json.list = list;
@@ -121,6 +121,39 @@ function sendHarbours(list, sender) {
     });
 }
 
+function sendHarbours(list, sender) {
+
+    this.sendBatch = function (batch) {
+        var json = {};
+        json.user_id = $('#add-form input[name="user_id"]').val();
+        json.list = batch;
+        $.post("handler.php", {
+            request: "add",
+            data: json
+        },this.onSendSucces
+        );
+    }
+
+    this.onSendSucces = function (result, status) {
+        this.batchsSent++;
+        if (this.batchsSent > 0) {
+            //TODO: create temporary markers
+        }
+        if (this.dataToSend.length == 0) {
+            console.log("progress: 100%");
+        } else {
+            console.log("progress: " + Math.round(this.batchsSent * this.batchSize / this.totalSize * 100) + "%")
+            var batch = this.dataToSend.splice(0, (this.dataToSend.length > this.batchSize ? this.batchSize : this.dataToSend.length));
+            this.sendBatch(batch);
+        }
+    }
+
+    this.totalSize = list.length;
+    this.batchsSent = -1;
+    this.batchSize = 100;
+    this.dataToSend = list;
+    this.onSendSucces();
+}
 
 
 function csvImporterSetup() {
