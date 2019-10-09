@@ -2,6 +2,9 @@ var map;
 var currentMarker;
 var selectedHarbourIds = [];
 var selectedMarkers = [];
+var harboursBeingSent = {
+    batchSize: 500
+};
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -73,26 +76,31 @@ function displayStoredHarbours(list) {
     }
 }
 
-function _sendHarbours(list, sender) {
+function sendHarbours_init(list, sender) {
+    harboursBeingSent.totalSize = list.length;
+    harboursBeingSent.batchsSent = -1;
+    harboursBeingSent.dataToSend = list;
+    harboursBeingSent.sender = sender;
+    this.sendHarbours_onSendSuccess(null, "init");
+}
+
+function sendHarbours_sendBatch(batch) {
     var json = {};
     json.user_id = $('#add-form input[name="user_id"]').val();
-    json.list = list;
+    json.list = batch;
     $.post("handler.php", {
         request: "add",
         data: json
-    }, function (result, status) {
-        if (status == "success") {
+    }, sendHarbours_onSendSuccess
+    );
+}
+
+function sendHarbours_onSendSuccess(result, status) {
+    if (status == "success" || status == "init") {
+        harboursBeingSent.batchsSent++;
+        if (harboursBeingSent.batchsSent > 0) {
             var ids = result.replace(/[\"\[\]]/g, "").split(",");
-            if (sender == "form") {
-                currentMarker = null;
-                $('#add-form')[0].reset();
-            } else if (sender == "csv") {
-                document.getElementById("file-name-display").value = "import done";
-                setTimeout(function () {
-                    document.getElementById("file-name-display").value = "";
-                }, 3000);
-            }
-            list.forEach(point => {
+            harboursBeingSent.lastBatch.forEach(point => {
                 var tempMarker = new google.maps.Marker({
                     position: { lat: parseFloat(point.lat), lng: parseFloat(point.lng) },
                     title: point.name,
@@ -115,44 +123,48 @@ function _sendHarbours(list, sender) {
                     console.log(selectedHarbourIds);
                 });
             });
-        } else if (status == "timeout" || status == "error") {
-            console.log("error");
         }
-    });
+        if (harboursBeingSent.dataToSend.length == 0) {
+            switch (harboursBeingSent.sender) {
+                case "csv":
+                    displayProgress(1);
+                    document.getElementById("file-name-display").value = "import done";
+                    setTimeout(function () {
+                        document.getElementById("file-name-display").value = "";
+                    }, 3000);
+                    break;
+                case "form":
+                    currentMarker = null;
+                    $('#add-form')[0].reset();
+                    break;
+            }
+        } else {
+            displayProgress(harboursBeingSent.batchsSent * harboursBeingSent.batchSize / harboursBeingSent.totalSize)
+            var batch = harboursBeingSent.dataToSend.splice(0, (harboursBeingSent.dataToSend.length > harboursBeingSent.batchSize ? harboursBeingSent.batchSize : harboursBeingSent.dataToSend.length));
+            harboursBeingSent.lastBatch = batch;
+            sendHarbours_sendBatch(batch);
+        }
+    }
 }
 
-function sendHarbours(list, sender) {
-
-    this.sendBatch = function (batch) {
-        var json = {};
-        json.user_id = $('#add-form input[name="user_id"]').val();
-        json.list = batch;
-        $.post("handler.php", {
-            request: "add",
-            data: json
-        },this.onSendSucces
-        );
-    }
-
-    this.onSendSucces = function (result, status) {
-        this.batchsSent++;
-        if (this.batchsSent > 0) {
-            //TODO: create temporary markers
+function displayProgress(progress) {
+    var container = document.querySelector("#send-progress");
+    var progressBar = document.querySelector("#send-progress .progress-bar");
+    if (progress < 0) {
+        container.style.display = "none";
+    } else {
+        if (progress > 1) {
+            progress = 1;
         }
-        if (this.dataToSend.length == 0) {
-            console.log("progress: 100%");
-        } else {
-            console.log("progress: " + Math.round(this.batchsSent * this.batchSize / this.totalSize * 100) + "%")
-            var batch = this.dataToSend.splice(0, (this.dataToSend.length > this.batchSize ? this.batchSize : this.dataToSend.length));
-            this.sendBatch(batch);
+        container.style.display = "block";
+        progressBar.style.width = Math.round(100 * progress) + "%";
+        progressBar.innerHTML = Math.round(100 * progress) + "%";
+        if (progress >= 1) {
+            setTimeout(function () {
+                container.style.display = "none";
+            }, 3000);
         }
     }
-
-    this.totalSize = list.length;
-    this.batchsSent = -1;
-    this.batchSize = 100;
-    this.dataToSend = list;
-    this.onSendSucces();
 }
 
 
@@ -180,7 +192,7 @@ function csvImporterSetup() {
                 list.push(obj);
             }
         });
-        sendHarbours(list, "csv");
+        sendHarbours_init(list, "csv");
     });
 
     fileInput.addEventListener("change", function () {
@@ -195,7 +207,7 @@ $(document).ready(function () {
             lat: $('#add-form input[name="lat"]').val(),
             lng: $('#add-form input[name="lng"]').val()
         }];
-        sendHarbours(harbour, "form");
+        sendHarbours_init(harbour, "form");
         event.preventDefault();
     });
 
