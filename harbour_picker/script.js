@@ -42,7 +42,7 @@ function initMap() {
             });
         } else {
             currentMarker.setVisible(true);
-            currentMarker.setPosition(latLng);
+            currentMarker.setPosition(e.latLng);
         }
     });
     map.setOptions({ disableDoubleClickZoom: true });
