@@ -15,13 +15,13 @@ var harboursBeingSent = {
 
 function initMenus(){
     $("#marker-creation").click(function(){
-        hide($("#polygon-selection-caption"));
-        reveal($("#marker-creation-caption"));
+        hide($("#polygon-selection-caption")[0]);
+        reveal($("#marker-creation-caption")[0]);
         map.dbleClickAction = "marker-creation";
     });
     $("#polygon-selection").click(function(){
-        hide($("#marker-creation-caption"));
-        reveal($("#polygon-selection-caption"));
+        hide($("#marker-creation-caption")[0]);
+        reveal($("#polygon-selection-caption")[0]);
         map.dbleClickAction = "polygon-selection";
     });
 }
