@@ -75,13 +75,24 @@ if (!empty($_POST)) {
             <!-- CAPTION -->
             <?php if ($_SESSION["auth"]) { ?>
                 <div class="col-xs-12 col-sm-6">
+                    <h3>How to use this map</h3>
                     <div class="custom-control custom-radio">
-                        <input id="single-select" type="radio" class="custom-control-input" name="selection-mode" checked>
-                        <label class="custom-control-label" for="single-select">Single marker selection</label>
-                        <input id="polygon-select" type="radio" class="custom-control-input" name="selection-mode">
-                        <label class="custom-control-label" for="polygon-select">Polygon selection</label>
-                        <p for="single-select">Test for single marker selection</p>
-                        <p for="polygon-select">Test for polygon selection</p>
+                        <ul>
+                            <li>
+                                <strong>Double click </strong>
+                                <span id="marker-creation-caption">
+                                    Creates a temporary marker (red) on the map. Its location automatically fill out the form. Its is not yet stored in the database. Double click this marker to remove it.
+                                </span>
+                                <span id="polygon-selection-caption" class="hidden">
+                                    Creates a polygon corner. All markers inside this polygon are selected. Double click a corner (green marker) to remove it.
+                                </span>
+                            </li>
+                            <li><strong>Click on a blue marker </strong> Selects or unselects it. A selected marker turns green.</li>
+                        </ul>
+                        <input id="marker-creation" type="radio" class="custom-control-input" name="dbleclick-mode" checked>
+                        <label class="custom-control-label" for="marker-creation">Marker creation</label>
+                        <input id="polygon-selection" type="radio" class="custom-control-input" name="dbleclick-mode">
+                        <label class="custom-control-label" for="polygon-selection">Polygon selection</label>
                     </div>
                 </div>
             <?php } ?>

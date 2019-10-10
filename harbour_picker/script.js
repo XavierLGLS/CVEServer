@@ -1,4 +1,5 @@
 var map;
+map.dbleClickAction = "marker-creation";
 // Current new position
 var currentMarker;
 // Markers that are generated from the database content
@@ -12,6 +13,19 @@ var selectedMarkers = [];
 var harboursBeingSent = {
     batchSize: 500
 };
+
+function initMenus(){
+    $("#marker-creation").click(function(){
+        hide($("#polygon-selection-caption"));
+        reveal($("#marker-creation-caption"));
+        map.dbleClickAction = "marker-creation";
+    });
+    $("#polygon-selection").click(function(){
+        hide($("#marker-creation-caption"));
+        reveal($("#polygon-selection-caption"));
+        map.dbleClickAction = "polygon-selection";
+    });
+}
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -234,6 +248,7 @@ function reveal(elt) {
 }
 
 $(document).ready(function () {
+    initMenus();
     $('#add-form').submit(function (event) {
         var harbour = [{
             name: $('#add-form input[name="name"]').val(),
