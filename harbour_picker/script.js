@@ -36,7 +36,9 @@ function initMap() {
                 map: map
             });
             currentMarker.addListener('dblclick', function () {
-                currentMarker = null;
+                currentMarker.setVisible(false);
+                $('#add-form input[name="lat"]').val('');
+                $('#add-form input[name="lng"]').val('');
             });
         } else {
             currentMarker.setPosition(latLng);
