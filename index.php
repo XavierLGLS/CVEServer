@@ -16,19 +16,13 @@
     <div class="container">
         <h1>Complete voyaging experience</h1>
         <p class="text-warning">This is a work in progress (and temporary) website...</p>
-        <h3>Harbour Picker</h3>
+        <h3>Harbour Picker<span class="label label-warning">under development</span></h3>
         <form action="get"></form>
         <a href="harbour_picker/index.php">
             <button type="button" class="btn btn-primary">Go to the harbour picker page</button>
-            <div class="alert alert-warning">
-                <strong>Warning!</strong> This page is still under development
-            </div>
         </a>
-        <h3>Admin panel</h3>
+        <h3>Admin panel<span class="label label-danger">not developped yet</span></h3>
         <button type="button" disabled="true" class="btn btn-primary disable">Go to the admin panel</button>
-        <div class="alert alert-info">
-            <strong>Info!</strong> Not developped yet
-        </div>
     </div>
 </body>
 
