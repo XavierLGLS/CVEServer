@@ -17,10 +17,11 @@
         <h1>Complete voyaging experience</h1>
         <p class="text-warning">This is a work in progress (and temporary) website...</p>
         <h3>Harbour Picker <span class="label label-warning">under development</span></h3>
-        <form action="get"></form>
         <a href="harbour_picker/index.php">
             <button type="button" class="btn btn-primary">Go to the harbour picker page</button>
         </a>
+        <h3>User interface <span class="label label-danger">not developped yet</span></h3>
+        <button type="button" disabled="true" class="btn btn-primary disable">Go to the user interface template</button>
         <h3>Admin panel <span class="label label-danger">not developped yet</span></h3>
         <button type="button" disabled="true" class="btn btn-primary disable">Go to the admin panel</button>
     </div>
