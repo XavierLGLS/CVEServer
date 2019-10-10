@@ -81,7 +81,7 @@ if (!empty($_POST)) {
                         <ul>
                             <li>
                                 <strong>Double click </strong>
-                                <span id="marker-creation-caption">
+                                <span id="marker-creation-caption" class="">
                                     Creates a temporary marker (red) on the map. Its location automatically fill out the form. It is not yet stored in the database. Double click this marker to remove it.
                                 </span>
                                 <span id="polygon-selection-caption" class="hidden">
