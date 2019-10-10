@@ -28,6 +28,7 @@ if (!empty($_POST)) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+        <script src="assets/icons.js"></script>
         <script src="script.js"></script>
         <style>
             /* Always set the map height explicitly to define the size of the div
@@ -81,7 +82,7 @@ if (!empty($_POST)) {
                             <li>
                                 <strong>Double click </strong>
                                 <span id="marker-creation-caption">
-                                    Creates a temporary marker (red) on the map. Its location automatically fill out the form. Its is not yet stored in the database. Double click this marker to remove it.
+                                    Creates a temporary marker (red) on the map. Its location automatically fill out the form. It is not yet stored in the database. Double click this marker to remove it.
                                 </span>
                                 <span id="polygon-selection-caption" class="hidden">
                                     Creates a polygon corner. All markers inside this polygon are selected. Double click a corner (green marker) to remove it.

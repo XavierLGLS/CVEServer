@@ -93,9 +93,10 @@ function displayStoredHarbours(list) {
         var tempMarker = new google.maps.Marker({
             position: { lat: parseFloat(harbour["lat"]), lng: parseFloat(harbour["lng"]) },
             title: harbour["name"],
-            icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-            },
+            // icon: {
+            //     url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+            // },
+            icon: standardHarbour_icon,
             harbour_id: parseInt(harbour["harbour_id"]),
             map: map
         });
