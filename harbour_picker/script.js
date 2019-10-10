@@ -44,9 +44,7 @@ function initMap() {
         if (currentMarker == undefined) {
             currentMarker = new google.maps.Marker({
                 position: e.latLng,
-                icon: {
-                    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-                },
+                icon: currentHarbour_icon,
                 map: map
             });
             currentMarker.addListener('dblclick', function () {
@@ -77,9 +75,7 @@ function updateMarkerLocation(latLng, title) {
     if (currentMarker == undefined) {
         currentMarker = new google.maps.Marker({
             position: latLng,
-            icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-            },
+            icon: currentHarbour_icon,
             map: map
         });
     } else {
@@ -93,9 +89,6 @@ function displayStoredHarbours(list) {
         var tempMarker = new google.maps.Marker({
             position: { lat: parseFloat(harbour["lat"]), lng: parseFloat(harbour["lng"]) },
             title: harbour["name"],
-            // icon: {
-            //     url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-            // },
             icon: standardHarbour_icon,
             harbour_id: parseInt(harbour["harbour_id"]),
             map: map
@@ -104,11 +97,11 @@ function displayStoredHarbours(list) {
             if (selectedHarbourIds.includes(this.harbour_id)) {
                 selectedHarbourIds = selectedHarbourIds.filter(id => id != this.harbour_id);
                 selectedMarkers = selectedMarkers.filter(marker => marker.harbour_id != this.harbour_id);
-                this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
+                this.setIcon(standardHarbour_icon);
             } else {
                 selectedHarbourIds.push(this.harbour_id);
                 selectedMarkers.push(this);
-                this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png" });
+                this.setIcon(selectedHarbour_icon);
             }
         });
         backgroundMarkers.push(tempMarker);
@@ -143,9 +136,7 @@ function sendHarbours_onSendSuccess(result, status) {
                 var tempMarker = new google.maps.Marker({
                     position: { lat: parseFloat(point.lat), lng: parseFloat(point.lng) },
                     title: point.name,
-                    icon: {
-                        url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                    },
+                    icon: standardHarbour_icon,
                     harbour_id: parseInt(ids.shift()),
                     map: map
                 });
@@ -153,11 +144,11 @@ function sendHarbours_onSendSuccess(result, status) {
                     if (selectedHarbourIds.includes(this.harbour_id)) {
                         selectedHarbourIds = selectedHarbourIds.filter(id => id != this.harbour_id);
                         selectedMarkers = selectedMarkers.filter(marker => marker.harbour_id != this.harbour_id);
-                        this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" });
+                        this.setIcon(standardHarbour_icon);
                     } else {
                         selectedHarbourIds.push(this.harbour_id);
                         selectedMarkers.push(this);
-                        this.setIcon({ url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png" });
+                        this.setIcon(selectedHarbour_icon);
                     }
                     console.log(selectedHarbourIds);
                 });

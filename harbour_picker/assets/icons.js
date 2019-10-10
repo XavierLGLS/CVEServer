@@ -5,27 +5,27 @@ var standardHarbour_icon = {
     path: anchorPath,
     fillColor: "#2bb0e0",
     fillOpacity: 0.8,
-    scale: 1,
+    scale: 0.05,
     strokeColor: '#383838',
-    strokeWeight: 14
+    strokeWeight: 0.5
 };
 
 var selectedHarbour_icon = {
     path: anchorPath,
     fillColor: "#ff428e",
     fillOpacity: 0.8,
-    scale: 1,
+    scale: 0.05,
     strokeColor: '#383838',
-    strokeWeight: 14
+    strokeWeight: 0.5
 };
 
 var currentHarbour_icon = {
     path: anchorPath,
     fillColor: "#37e68e",
     fillOpacity: 0.8,
-    scale: 1,
+    scale: 0.05,
     strokeColor: '#383838',
-    strokeWeight: 14
+    strokeWeight: 0.5
 };
 
 var polygonCorner_icon = {
