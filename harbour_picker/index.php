@@ -129,7 +129,7 @@ if (!empty($_POST)) {
                     </form>
                     <?php if (!empty($_POST)) {
                             if ($_POST['form'] == "login") { ?>
-                            <div class="alert alert-danger">The authentication failed</div>
+                            <div class="alert alert-danger fade in">The authentication failed</div>
                 <?php }
                     }
                 } ?>
