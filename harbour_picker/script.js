@@ -35,7 +35,7 @@ function initMap() {
                 },
                 map: map
             });
-            currentMarker.addEventListener('dblclick', function () {
+            currentMarker.addListener('dblclick', function () {
                 currentMarker = null;
             });
         } else {
