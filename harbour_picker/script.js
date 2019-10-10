@@ -27,7 +27,20 @@ function initMap() {
         if (inputLng != null) {
             inputLng.value = Math.round(1000 * e.latLng.lng()) / 1000;
         }
-        updateMarkerLocation(e.latLng);
+        if (currentMarker == undefined) {
+            currentMarker = new google.maps.Marker({
+                position: e.latLng,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                },
+                map: map
+            });
+            currentMarker.addEventListener('dblclick', function () {
+                currentMarker = null;
+            });
+        } else {
+            currentMarker.setPosition(latLng);
+        }
     });
     map.setOptions({ disableDoubleClickZoom: true });
 
