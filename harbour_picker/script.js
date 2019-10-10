@@ -41,6 +41,7 @@ function initMap() {
                 $('#add-form input[name="lng"]').val('');
             });
         } else {
+            currentMarker.setVisible(true);
             currentMarker.setPosition(latLng);
         }
     });
