@@ -72,6 +72,14 @@ if (!empty($_POST)) {
             <p>This tool fills the database that stores all harbours where players will be able to make deals.</p>
             <div class="col-xs-12 col-sm-6">
                 <div id="map" style="height: 500px;"></div>
+                <?php if ($_SESSION["auth"]) { ?>
+                <div class="custom-control custom-radio">
+                    <input id="single-select" type="radio" class="custom-control-input" name="selection-mode" checked>
+                    <label class="custom-control-label" for="single-select">Single marker selection</label>
+                    <input id="polygon-select" type="radio" class="custom-control-input" name="selection-mode">
+                    <label class="custom-control-label" for="polygon-select">Polygon selection</label>
+                </div>
+                <?php } ?>
             </div>
             <div class="col-xs-12 col-sm-6">
                 <?php if ($_SESSION["auth"]) { ?>
