@@ -1,5 +1,4 @@
 var map;
-map.dbleClickAction = "marker-creation";
 // Current new position
 var currentMarker;
 // Markers that are generated from the database content
@@ -32,6 +31,7 @@ function initMap() {
         center: { lat: 35.6, lng: -40.9 },
         zoom: 3
     });
+    map.dbleClickAction = "marker-creation";
     map.addListener('dblclick', function (e) {
         var inputLat = document.querySelector('input[name="lat"]');
         if (inputLat != null) {
