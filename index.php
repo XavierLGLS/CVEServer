@@ -1,3 +1,4 @@
+<?php ?>
 <!DOCTYPE html>
 <html>
 
@@ -20,10 +21,15 @@
         <form action="get"></form>
         <a href="harbour_picker/index.php">
             <button type="button" class="btn btn-primary">Go to the harbour picker page</button>
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> This page is still under development
+            </div>
         </a>
         <h3>Admin panel</h3>
-        <p>soon...</p>
         <button type="button" disabled="true" class="btn btn-primary disable">Go to the admin panel</button>
+        <div class="alert alert-info">
+            <strong>Info!</strong> Not developped yet
+        </div>
     </div>
 </body>
 
