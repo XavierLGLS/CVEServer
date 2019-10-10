@@ -64,24 +64,30 @@ if (!empty($_POST)) {
                 display: block;
             }
         </style>
+        <link rel="stylesheet" href="style.css">
+
     </head>
 
     <body>
         <div class="container">
             <h1>Harbour picker</h1>
             <p>This tool fills the database that stores all harbours where players will be able to make deals.</p>
-            <div class="col-xs-12 col-sm-6">
-                <div id="map" style="height: 500px;"></div>
-                <?php if ($_SESSION["auth"]) { ?>
+            <!-- CAPTION -->
+            <?php if ($_SESSION["auth"]) { ?>
+                <div class="col-xs-12 col-sm-6">
                     <div class="custom-control custom-radio">
                         <input id="single-select" type="radio" class="custom-control-input" name="selection-mode" checked>
                         <label class="custom-control-label" for="single-select">Single marker selection</label>
-                    </div>
-                    <div class="custom-control custom-radio">
                         <input id="polygon-select" type="radio" class="custom-control-input" name="selection-mode">
                         <label class="custom-control-label" for="polygon-select">Polygon selection</label>
+                        <p for="single-select">Test for single marker selection</p>
+                        <p for="polygon-select">Test for polygon selection</p>
                     </div>
-                <?php } ?>
+                </div>
+            <?php } ?>
+            <!-- MAP -->
+            <div class="col-xs-12 col-sm-6">
+                <div id="map" style="height: 500px;"></div>
             </div>
             <div class="col-xs-12 col-sm-6">
                 <?php if ($_SESSION["auth"]) { ?>
@@ -116,9 +122,9 @@ if (!empty($_POST)) {
                         </div>
                         <p class="help-block">the <strong>.csv</strong> file structure must be lat;lng;name (without header)</p>
                     </div>
-                    <div id="send-progress" class="progress" style="display: none;">
+                    <div id="send-progress" class="progress hidden">
                         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                            70%
+                            0%
                         </div>
                     </div>
                     <h3>Remove harbours</h3>

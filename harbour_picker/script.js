@@ -160,17 +160,17 @@ function displayProgress(progress) {
     var container = document.querySelector("#send-progress");
     var progressBar = document.querySelector("#send-progress .progress-bar");
     if (progress < 0) {
-        container.style.display = "none";
+        hide(container);
     } else {
         if (progress > 1) {
             progress = 1;
         }
-        container.style.display = "block";
+        reveal(container);
         progressBar.style.width = Math.round(100 * progress) + "%";
         progressBar.innerHTML = Math.round(100 * progress) + "%";
         if (progress >= 1) {
             setTimeout(function () {
-                container.style.display = "none";
+                hide(container);
             }, 3000);
         }
     }
@@ -207,6 +207,14 @@ function csvImporterSetup() {
     fileInput.addEventListener("change", function () {
         fileReader.readAsText(this.files[0]);
     });
+}
+
+function hide(elt) {
+    elt.classList.add("hidden");
+}
+
+function reveal(elt) {
+    elt.classList.remove("hidden");
 }
 
 $(document).ready(function () {
