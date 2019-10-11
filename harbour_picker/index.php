@@ -84,10 +84,10 @@ if (!empty($_POST)) {
                             <li><strong>blue marker</strong>Marker stored in the database</li>
                             <li>
                                 <strong>Double click </strong>
-                                <span id="marker-creation-caption" class="">
+                                <span class="visible-when-marker-creation">
                                     Creates a temporary marker (red) on the map. Its location automatically fill out the form. It is not yet stored in the database. Double click this marker to remove it.
                                 </span>
-                                <span id="polygon-selection-caption" class="hidden">
+                                <span class="visible-when-polygon-selection hidden">
                                     Creates a polygon corner. All markers inside this polygon are selected. Double click a corner (green marker) to remove it.
                                 </span>
                             </li>
@@ -99,6 +99,8 @@ if (!empty($_POST)) {
                         <input id="polygon-selection" type="radio" class="custom-control-input" name="dbleclick-mode">
                         <label class="custom-control-label" for="polygon-selection">Polygon selection</label>
                     </div>
+                    <button type="button" onclick="selectMarkersInPolygon();" class="btn btn-primary visible-when-polygon-selection">Select all markers inside the polygon</button>
+                    <button type="button" onclick="unselectMarkersInPolygon();" class="btn btn-primary visible-when-polygon-selection">Unselect all markers inside the polygon</button>
                 </div>
             <?php } ?>
             <!-- MAP -->

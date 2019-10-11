@@ -1,5 +1,6 @@
 var map;
 // Current new position
+var selectionMode;
 var currentMarker;
 // Current polygon
 var currentPolygon;
@@ -21,10 +22,10 @@ class SelectionPolygon {
             paths: [],
             draggable: true, // turn off if it gets annoying
             editable: true,
-            strokeColor: color_of_this,
+            strokeColor: "#00FF00",
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            fillColor: color_of_this,
+            fillColor: "#00FF00",
             fillOpacity: 0.35
         });
         this._polygon.setMap(map);
@@ -32,20 +33,41 @@ class SelectionPolygon {
     }
 
     addCorner(latLng) {
-        this._polygon.paths.psuh(latLng);
+        this._markers.push(latLng)
+        this._polygon.setPath(this._markers);
+    }
+
+    selectContainedMarkers() {
+        //TODO
+        google.maps.geometry.poly.containsLocation(latLng, polygon)
+        for (var marker in backgroundMarkers) {
+            console.log(marker);
+        }
+    }
+
+    unselectContainedMarkers() {
+        //TODO
     }
 }
 
 function initMenus() {
     $("#marker-creation").click(function () {
-        hide($("#polygon-selection-caption")[0]);
-        reveal($("#marker-creation-caption")[0]);
-        map.dbleClickAction = "marker-creation";
+        $(".visible-when-polygon-selection").forEach(elt => {
+            hide(elt);
+        });
+        $(".visible-when-marker-creation").forEach(elt => {
+            reveal(elt);
+        });
+        selectionMode = "marker-creation";
     });
     $("#polygon-selection").click(function () {
-        hide($("#marker-creation-caption")[0]);
-        reveal($("#polygon-selection-caption")[0]);
-        map.dbleClickAction = "polygon-selection";
+        $(".visible-when-polygon-selection").forEach(elt => {
+            reveal(elt);
+        });
+        $(".visible-when-marker-creation").forEach(elt => {
+            hide(elt);
+        });
+        selectionMode = "polygon-selection";
     });
 }
 
@@ -54,10 +76,10 @@ function initMap() {
         center: { lat: 35.6, lng: -40.9 },
         zoom: 3
     });
-    map.dbleClickAction = "marker-creation";
-    currentPolygon = new SelectionPolygon();
+    selectionMode = "marker-creation";
+    currentPolygon = new SelectionPolygon(map);
     map.addListener('dblclick', function (e) {
-        switch (map.dbleClickAction) {
+        switch (selectionMode) {
             case "marker-creation":
                 var inputLat = document.querySelector('input[name="lat"]');
                 if (inputLat != null) {
@@ -310,3 +332,15 @@ $(document).ready(function () {
 
     csvImporterSetup();
 });
+
+function selectMarkersInPolygon() {
+    if (currentPolygon != null) {
+        currentPolygon.selectContainedMarkers();
+    }
+}
+
+function unselectMarkersInPolygon() {
+    if (currentPolygon != null) {
+        currentPolygon.unselectContainedMarkers();
+    }
+}
