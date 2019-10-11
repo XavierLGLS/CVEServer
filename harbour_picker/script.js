@@ -5,7 +5,7 @@ var currentHarbour;
 // Current polygon
 var currentPolygon;
 // Harbours that are stored in the database
-var harbours;
+var harbours = [];
 // Post requests
 var harboursBeingSent = {
     batchSize: 500
