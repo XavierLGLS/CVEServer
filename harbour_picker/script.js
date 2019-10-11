@@ -101,7 +101,7 @@ class Harbour {
     }
 
     set position(value) {
-        self._marker.setPosition(value);
+        this._marker.setPosition(value);
     }
 
     get id() {
