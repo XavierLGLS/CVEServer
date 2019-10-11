@@ -63,7 +63,8 @@ class Harbour {
             position: latLng,
             icon: standardHarbour_icon,
             harbour_id: id,
-            selected: false
+            selected: false,
+            parent: this
         });
         if (id === undefined) { // current harbour
             this._marker.setIcon(currentHarbour_icon);
@@ -82,7 +83,7 @@ class Harbour {
                 //     this.select();
                 // }
                 console.log(this);
-                console.log(Harbour.this);
+                console.log(this.parent);
             });
         }
     }
