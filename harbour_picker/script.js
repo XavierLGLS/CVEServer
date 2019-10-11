@@ -63,6 +63,7 @@ class Harbour {
     constructor(map, latLng, id, name) {
         this._selected = false;
         this._id = id;
+        this._name = name;
         this._marker = new google.maps.Marker({
             map: map,
             position: latLng,
@@ -113,6 +114,13 @@ class Harbour {
             return null;
         }
         return this._id;
+    }
+
+    get name() {
+        if (this._name === undefined) {
+            return "unknown";
+        }
+        return this._name;
     }
 
     get position() {
@@ -350,27 +358,27 @@ $(document).ready(function () {
     });
 
     $('#remove').click(function () {
-        //TODO
-        // var confirmString = "Do you really want to remove";
-        // for (var i = 0; i < selectedMarkers.length; i++) {
-        //     confirmString += ("\n - " + selectedMarkers[i].title);
-        // }
-        // if (confirm(confirmString)) {
-        //     $.post("handler.php", {
-        //         request: "remove",
-        //         list: { list: JSON.stringify(selectedHarbourIds) }
-        //     }, function (result, status) {
-        //         if (status == "success") {
-        //             for (var i = 0; i < selectedMarkers.length; i++) {
-        //                 selectedMarkers[i].setVisible(false);
-        //             }
-        //             selectedHarbourIds = [];
-        //             selectedMarkers = [];
-        //         } else if (status == "timeout" || status == "error") {
-        //             console.log("error");
-        //         }
-        //     });
-        // }
+        var confirmString = "Do you really want to remove";
+        var ids = [];
+        harbours.filter(harbour => harbour.selected).forEach(harbour => {
+            confirmString += ("\n - " + harbour.name);
+            ids.push(harbour.id);
+        });
+        if (confirm(confirmString)) {
+            $.post("handler.php", {
+                request: "remove",
+                list: { list: JSON.stringify(ids) }
+            }, function (result, status) {
+                if (status == "success") {
+                    harbours.filter(harbour => harbour.selected).forEach(harbour => {
+                        harbour.unselect();
+                        harbour.hide();
+                    });
+                } else if (status == "timeout" || status == "error") {
+                    console.log("error");
+                }
+            });
+        }
     });
 
     csvImporterSetup();
@@ -398,12 +406,4 @@ function resetCurrentHarbour() {
     if (currentHarbour != null) {
         currentHarbour.hide();
     }
-}
-
-function getAllSelectedHarbours() {
-    // var output = [];
-    // harbours.forEach(harbour => {
-
-    // });
-    // return harbours.filter();
 }
