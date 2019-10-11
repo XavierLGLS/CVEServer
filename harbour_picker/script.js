@@ -1,6 +1,7 @@
 var map;
 // Current new position
 var selectionMode;
+var selectedHarboursNumber = 0;
 var currentHarbour;
 // Current polygon
 var currentPolygon;
@@ -90,18 +91,26 @@ class Harbour {
     }
 
     select() {
-        this._marker.setIcon(selectedHarbour_icon);
-        this._selected = true;
+        if (!this._selected) {
+            this._marker.setIcon(selectedHarbour_icon);
+            this._selected = true;
+            selectedHarboursNumber++;
+            console.log(selectedHarboursNumber)
+        }
     }
 
     unselect() {
-        this._marker.setIcon(standardHarbour_icon);
-        this._selected = false;
+        if (this._selected) {
+            this._marker.setIcon(standardHarbour_icon);
+            this._selected = false;
+            selectedHarboursNumber--;
+            console.log(selectedHarboursNumber);
+        }
     }
 
     hide() {
         this._marker.setVisible(false);
-        this._selected = false;
+        this.unselect();
     }
 
     set position(value) {
