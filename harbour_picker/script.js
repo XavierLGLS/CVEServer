@@ -100,6 +100,10 @@ class Harbour {
         this._selected = false;
     }
 
+    set position(value) {
+        self._marker.setPosition(value);
+    }
+
     get id() {
         if (this._id === undefined) {
             return null;
@@ -174,7 +178,11 @@ function initMap() {
                 if (inputLng != null) {
                     inputLng.value = Math.round(1000 * e.latLng.lng()) / 1000;
                 }
-                currentHarbour = new Harbour(map, e.latLng);
+                if (currentHarbour == null) {
+                    currentHarbour = new Harbour(map, e.latLng);
+                } else {
+                    currentHarbour.position = e.latLng;
+                }
                 break;
             case "polygon-selection":
                 currentPolygon.addCorner(e.latLng);
