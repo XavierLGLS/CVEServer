@@ -15,6 +15,27 @@ var harboursBeingSent = {
     batchSize: 500
 };
 
+class SelectionPolygon {
+    constructor(map) {
+        this._polygon = new google.maps.Polygon({
+            paths: [],
+            draggable: true, // turn off if it gets annoying
+            editable: true,
+            strokeColor: color_of_this,
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: color_of_this,
+            fillOpacity: 0.35
+        });
+        this._polygon.setMap(map);
+        this._markers = [];
+    }
+
+    addCorner(latLng) {
+        this._polygon.paths.psuh(latLng);
+    }
+}
+
 function initMenus() {
     $("#marker-creation").click(function () {
         hide($("#polygon-selection-caption")[0]);
@@ -34,6 +55,7 @@ function initMap() {
         zoom: 3
     });
     map.dbleClickAction = "marker-creation";
+    currentPolygon = new SelectionPolygon();
     map.addListener('dblclick', function (e) {
         switch (map.dbleClickAction) {
             case "marker-creation":
@@ -62,7 +84,7 @@ function initMap() {
                 }
                 break;
             case "polygon-selection":
-                //TODO
+                currentPolygon.addCorner(e.latLng);
                 break;
         }
     });
