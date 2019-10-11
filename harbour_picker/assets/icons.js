@@ -10,6 +10,11 @@ var standardHarbour_icon = {
     strokeWeight: 1
 };
 
+//TODO: remove ?
+standardHarbour_icon = {
+    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+};
+
 var selectedHarbour_icon = {
     path: anchorPath,
     fillColor: "#37e68e",
@@ -19,6 +24,11 @@ var selectedHarbour_icon = {
     strokeWeight: 1
 };
 
+//TODO: remove ?
+selectedHarbour_icon = {
+    url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+};
+
 var currentHarbour_icon = {
     path: anchorPath,
     fillColor: "#ff428e",
@@ -26,6 +36,11 @@ var currentHarbour_icon = {
     scale: 6,
     strokeColor: '#383838',
     strokeWeight: 1
+};
+
+//TODO: remove ?
+currentHarbour_icon = {
+    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
 };
 
 var polygonCorner_icon = {
