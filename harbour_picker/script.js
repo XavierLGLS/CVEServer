@@ -76,11 +76,13 @@ class Harbour {
         } else {// stored harbour
             this._marker.setTitle(name);
             this._marker.addListener("click", function () {
-                if (this._maker.selected) {
-                    this.unselect();
-                } else {
-                    this.select();
-                }
+                // if (this._maker.selected) {
+                //     this.unselect();
+                // } else {
+                //     this.select();
+                // }
+                console.log(this);
+                console.log(Harbour.this);
             });
         }
     }
