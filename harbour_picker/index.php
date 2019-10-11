@@ -100,8 +100,9 @@ if (!empty($_POST)) {
                         <input id="polygon-selection" type="radio" class="custom-control-input" name="dbleclick-mode">
                         <label class="custom-control-label" for="polygon-selection">Polygon selection</label>
                     </div>
-                    <button type="button" onclick="selectMarkersInPolygon();" class="btn btn-primary visible-when-polygon-selection">Select all markers inside the polygon</button>
+                    <button type="button" onclick="selectMarkersInPolygon();" class="btn btn-success visible-when-polygon-selection">Select all markers inside the polygon</button>
                     <button type="button" onclick="unselectMarkersInPolygon();" class="btn btn-primary visible-when-polygon-selection">Unselect all markers inside the polygon</button>
+                    <button type="button" onclick="resetPolygon();" class="btn btn-danger visible-when-polygon-selection">Reset the polygon</button>
                 </div>
             <?php } ?>
             <!-- MAP -->

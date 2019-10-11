@@ -39,18 +39,31 @@ class SelectionPolygon {
 
     selectContainedMarkers() {
         //TODO
-        google.maps.geometry.poly.containsLocation(latLng, polygon)
-        for (var marker in backgroundMarkers) {
-            console.log(marker);
-        }
+        backgroundMarkers.forEach(marker => {
+            if (google.maps.geometry.poly.containsLocation(marker.position, this._polygon)) {
+                console.log(marker.title);
+            }
+        });
     }
 
     unselectContainedMarkers() {
         //TODO
     }
+
+    reset() {
+        this._markers = [];
+        this._polygon.setPath(this._markers);
+    }
 }
 
 function initMenus() {
+    $(".visible-when-polygon-selection").each(function () {
+        hide(this);
+    });
+    $(".visible-when-marker-creation").each(function () {
+        reveal(this);
+    });
+    selectionMode = "marker-creation";
     $("#marker-creation").click(function () {
         $(".visible-when-polygon-selection").each(function () {
             hide(this);
@@ -76,7 +89,6 @@ function initMap() {
         center: { lat: 35.6, lng: -40.9 },
         zoom: 3
     });
-    selectionMode = "marker-creation";
     currentPolygon = new SelectionPolygon(map);
     map.addListener('dblclick', function (e) {
         switch (selectionMode) {
@@ -342,5 +354,11 @@ function selectMarkersInPolygon() {
 function unselectMarkersInPolygon() {
     if (currentPolygon != null) {
         currentPolygon.unselectContainedMarkers();
+    }
+}
+
+function resetPolygon() {
+    if (currentPolygon != null) {
+        currentPolygon.reset();
     }
 }
