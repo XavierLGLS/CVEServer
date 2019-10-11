@@ -79,6 +79,9 @@ if (!empty($_POST)) {
                     <h3>How to use this map</h3>
                     <div class="custom-control custom-radio">
                         <ul>
+                            <li><strong>red marker</strong>Current marker: not yet stored in the database</li>
+                            <li><strong>green marker</strong>Selected marker</li>
+                            <li><strong>blue marker</strong>Marker stored in the database</li>
                             <li>
                                 <strong>Double click </strong>
                                 <span id="marker-creation-caption" class="">
@@ -90,6 +93,7 @@ if (!empty($_POST)) {
                             </li>
                             <li><strong>Click on a blue marker </strong> Selects or unselects it. A selected marker turns green.</li>
                         </ul>
+                        <h4>Chose the map interaction mod:</h4>
                         <input id="marker-creation" type="radio" class="custom-control-input" name="dbleclick-mode" checked>
                         <label class="custom-control-label" for="marker-creation">Marker creation</label>
                         <input id="polygon-selection" type="radio" class="custom-control-input" name="dbleclick-mode">
