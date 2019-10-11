@@ -80,9 +80,9 @@ if (!empty($_POST)) {
                     <h3>How to use this map</h3>
                     <div class="custom-control custom-radio">
                         <ul>
-                            <li><strong>red marker</strong> Current marker: not yet stored in the database</li>
-                            <li><strong>green marker</strong> Selected marker</li>
-                            <li><strong>blue marker</strong> Marker stored in the database</li>
+                            <li><strong>red marker</strong> Current harbour: not yet stored in the database</li>
+                            <li><strong>green marker</strong> Selected harbour</li>
+                            <li><strong>blue marker</strong> Harbours stored in the database</li>
                             <li>
                                 <strong>Double click </strong>
                                 <span class="visible-when-harbour-creation">
@@ -96,12 +96,12 @@ if (!empty($_POST)) {
                         </ul>
                         <h4>Chose the map interaction mod:</h4>
                         <input id="harbour-creation" type="radio" class="custom-control-input" name="dbleclick-mode" checked>
-                        <label class="custom-control-label" for="harbour-creation">Marker creation</label>
+                        <label class="custom-control-label" for="harbour-creation">Harbour creation</label>
                         <input id="polygon-selection" type="radio" class="custom-control-input" name="dbleclick-mode">
                         <label class="custom-control-label" for="polygon-selection">Polygon selection</label>
                     </div>
-                    <button type="button" onclick="selectMarkersInPolygon();" class="btn btn-success visible-when-polygon-selection">Select all markers inside the polygon</button>
-                    <button type="button" onclick="unselectMarkersInPolygon();" class="btn btn-primary visible-when-polygon-selection">Unselect all markers inside the polygon</button>
+                    <button type="button" onclick="selectHarboursInPolygon();" class="btn btn-success visible-when-polygon-selection">Select all markers inside the polygon</button>
+                    <button type="button" onclick="unselectHarboursInPolygon();" class="btn btn-primary visible-when-polygon-selection">Unselect all markers inside the polygon</button>
                     <button type="button" onclick="resetPolygon();" class="btn btn-danger visible-when-polygon-selection">Reset the polygon</button>
                 </div>
             <?php } ?>

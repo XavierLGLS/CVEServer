@@ -145,7 +145,7 @@ function initMenus() {
     $("#polygon-selection").click(function () {
         setPolygonSelectionMenus();
         selectionMode = "polygon-selection";
-        resetCurrentMarker();
+        resetCurrentHarbour();
     });
     setHarbourCreationMenu();
     selectionMode = "harbour-creation";
@@ -194,7 +194,7 @@ function displayStoredHarbours(list) {
     for (var i = 0; i < list.length; i++) {
         var harbour = list[i];
         var newHarbour = new Harbour(map, { lat: parseFloat(harbour["lat"]), lng: parseFloat(harbour["lng"]) }, parseInt(harbour["harbour_id"]), harbour["name"]);
-        markers.push(newHarbour);
+        harbours.push(newHarbour);
     }
 }
 
@@ -359,15 +359,15 @@ $(document).ready(function () {
     csvImporterSetup();
 });
 
-function selectMarkersInPolygon() {
+function selectHarboursInPolygon() {
     if (currentPolygon != null) {
-        currentPolygon.selectContainedMarkers();
+        currentPolygon.selectContainedHarbours();
     }
 }
 
-function unselectMarkersInPolygon() {
+function unselectHarboursInPolygon() {
     if (currentPolygon != null) {
-        currentPolygon.unselectContainedMarkers();
+        currentPolygon.unselectContainedHarbours();
     }
 }
 
@@ -377,9 +377,9 @@ function resetPolygon() {
     }
 }
 
-function resetCurrentMarker() {
-    if (currentMarker != null) {
-        currentMarker.hide();
+function resetCurrentHarbour() {
+    if (currentHarbour != null) {
+        currentHarbour.hide();
     }
 }
 
