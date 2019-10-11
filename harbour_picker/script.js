@@ -69,7 +69,7 @@ class Harbour {
         if (id === undefined) { // current harbour
             this._marker.setIcon(currentHarbour_icon);
             this._marker.addListener('dblclick', function () {
-                this._marker.setVisible(false);
+                this.setVisible(false);
                 $('#add-form input[name="lat"]').val('');
                 $('#add-form input[name="lng"]').val('');
             });
