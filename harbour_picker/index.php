@@ -35,6 +35,7 @@ if (!empty($_POST)) {
        * element that contains the map. */
             #map {
                 height: 100%;
+                margin: 1em;
             }
 
             html,

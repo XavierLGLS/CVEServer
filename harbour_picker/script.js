@@ -52,20 +52,20 @@ class SelectionPolygon {
 
 function initMenus() {
     $("#marker-creation").click(function () {
-        $(".visible-when-polygon-selection").forEach(elt => {
-            hide(elt);
+        $(".visible-when-polygon-selection").each(function () {
+            hide(this);
         });
-        $(".visible-when-marker-creation").forEach(elt => {
-            reveal(elt);
+        $(".visible-when-marker-creation").each(function () {
+            reveal(this);
         });
         selectionMode = "marker-creation";
     });
     $("#polygon-selection").click(function () {
-        $(".visible-when-polygon-selection").forEach(elt => {
-            reveal(elt);
+        $(".visible-when-polygon-selection").each(function () {
+            reveal(this);
         });
-        $(".visible-when-marker-creation").forEach(elt => {
-            hide(elt);
+        $(".visible-when-marker-creation").each(function () {
+            hide(this);
         });
         selectionMode = "polygon-selection";
     });
