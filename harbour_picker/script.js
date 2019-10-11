@@ -68,7 +68,6 @@ class Harbour {
         });
         if (id === undefined) { // current harbour
             this._marker.setIcon(currentHarbour_icon);
-            icon = currentHarbour_icon;
             this._marker.addListener('dblclick', function () {
                 this._marker.setVisible(false);
                 $('#add-form input[name="lat"]').val('');
