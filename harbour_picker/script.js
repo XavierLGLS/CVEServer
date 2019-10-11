@@ -243,7 +243,7 @@ function sendHarbours_onSendSuccess(result, status) {
         if (harboursBeingSent.batchsSent > 0) {
             var ids = result.replace(/[\"\[\]]/g, "").split(",");
             harboursBeingSent.lastBatch.forEach(point => {
-                var newHarbour = new Harbour(map, { lat: point.lat, lng: point.lng }, parseInt(ids.shift()), point.name);
+                var newHarbour = new Harbour(map, { lat: parseFloat(point.lat), lng: parseFloat(point.lng) }, parseInt(ids.shift()), point.name);
                 harbours.push(newHarbour);
             });
         }
