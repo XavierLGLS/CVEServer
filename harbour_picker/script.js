@@ -58,12 +58,12 @@ class Harbour {
      * @param {string} type "background, current"
      */
     constructor(map, latLng, id, name) {
+        this._selected = false;
+        this._id = id;
         this._marker = new google.maps.Marker({
             map: map,
             position: latLng,
             icon: standardHarbour_icon,
-            harbour_id: id,
-            selected: false,
             parent: this
         });
         if (id === undefined) { // current harbour
@@ -77,40 +77,43 @@ class Harbour {
         } else {// stored harbour
             this._marker.setTitle(name);
             this._marker.addListener("click", function () {
-                // if (this._maker.selected) {
-                //     this.unselect();
-                // } else {
-                //     this.select();
-                // }
-                console.log(this);
-                console.log(this.parent);
+                if (this.parent.selected) {
+                    this.parent.unselect();
+                } else {
+                    this.parent.select();
+                }
             });
         }
     }
 
     select() {
         this._marker.setIcon(selectedHarbour_icon);
-        this._marker.selected = true;
+        this._selected = true;
     }
 
     unselect() {
         this._marker.setIcon(standardHarbour_icon);
-        this._marker.selected = false;
+        this._selected = false;
     }
 
     hide() {
         this._marker.setVisible(false);
+        this._selected = false;
     }
 
     get id() {
-        if (this._marker.id === undefined) {
+        if (this._id === undefined) {
             return null;
         }
-        return this._marker.id;
+        return this._id;
     }
 
     get position() {
         return this._marker.position;
+    }
+
+    get selected() {
+        return this._selected;
     }
 }
 
