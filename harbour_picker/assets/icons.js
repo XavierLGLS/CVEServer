@@ -5,25 +5,25 @@ var standardHarbour_icon = {
     path: anchorPath,
     fillColor: "#2bb0e0",
     fillOpacity: 0.8,
-    scale: 5,
+    scale: 6,
     strokeColor: '#383838',
     strokeWeight: 1
 };
 
 var selectedHarbour_icon = {
     path: anchorPath,
-    fillColor: "#ff428e",
+    fillColor: "#37e68e",
     fillOpacity: 0.8,
-    scale: 5,
+    scale: 6,
     strokeColor: '#383838',
     strokeWeight: 1
 };
 
 var currentHarbour_icon = {
     path: anchorPath,
-    fillColor: "#37e68e",
+    fillColor: "#ff428e",
     fillOpacity: 0.8,
-    scale: 5,
+    scale: 6,
     strokeColor: '#383838',
     strokeWeight: 1
 };
