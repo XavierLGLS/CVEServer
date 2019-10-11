@@ -13,13 +13,13 @@ var harboursBeingSent = {
     batchSize: 500
 };
 
-function initMenus(){
-    $("#marker-creation").click(function(){
+function initMenus() {
+    $("#marker-creation").click(function () {
         hide($("#polygon-selection-caption")[0]);
         reveal($("#marker-creation-caption")[0]);
         map.dbleClickAction = "marker-creation";
     });
-    $("#polygon-selection").click(function(){
+    $("#polygon-selection").click(function () {
         hide($("#marker-creation-caption")[0]);
         reveal($("#polygon-selection-caption")[0]);
         map.dbleClickAction = "polygon-selection";
@@ -171,9 +171,12 @@ function sendHarbours_onSendSuccess(result, status) {
             }
         } else {
             displayProgress(harboursBeingSent.batchsSent * harboursBeingSent.batchSize / harboursBeingSent.totalSize)
-            var batch = harboursBeingSent.dataToSend.splice(0, (harboursBeingSent.dataToSend.length > harboursBeingSent.batchSize ? harboursBeingSent.batchSize : harboursBeingSent.dataToSend.length));
-            harboursBeingSent.lastBatch = batch;
-            sendHarbours_sendBatch(batch);
+            //little hack for UI update
+            setTimeout(function(){
+                var batch = harboursBeingSent.dataToSend.splice(0, (harboursBeingSent.dataToSend.length > harboursBeingSent.batchSize ? harboursBeingSent.batchSize : harboursBeingSent.dataToSend.length));
+                harboursBeingSent.lastBatch = batch;
+                sendHarbours_sendBatch(batch);
+            }, 0);
         }
     }
 }
