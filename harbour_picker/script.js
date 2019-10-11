@@ -35,14 +35,17 @@ class SelectionPolygon {
     selectContainedHarbours() {
         harbours.forEach(harbour => {
             if (google.maps.geometry.poly.containsLocation(harbour.position, this._polygon)) {
-                //TODO: if not selected
                 harbour.select();
             }
         });
     }
 
     unselectContainedHarbours() {
-        //TODO
+        harbours.forEach(harbour => {
+            if (google.maps.geometry.poly.containsLocation(harbour.position, this._polygon)) {
+                harbour.unselect();
+            }
+        });
     }
 
     reset() {
