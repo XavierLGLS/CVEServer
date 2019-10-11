@@ -101,6 +101,7 @@ class Harbour {
     }
 
     set position(value) {
+        this._marker.setVisible(true);
         this._marker.setPosition(value);
     }
 
@@ -112,7 +113,6 @@ class Harbour {
     }
 
     get position() {
-        this._marker.setVisible(true);
         return this._marker.position;
     }
 
