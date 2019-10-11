@@ -75,7 +75,7 @@ if (!empty($_POST)) {
             <p>This tool fills the database that stores all harbours where players will be able to make deals.</p>
             <!-- CAPTION -->
             <?php if ($_SESSION["auth"]) { ?>
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-sm-12">
                     <h3>How to use this map</h3>
                     <div class="custom-control custom-radio">
                         <ul>
