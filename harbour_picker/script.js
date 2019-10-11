@@ -62,8 +62,8 @@ class Harbour {
             map: map,
             position: latLng,
             icon: standardHarbour_icon,
-            harbour_id = id,
-            selected = false
+            harbour_id: id,
+            selected: false
         });
         if (id === undefined) { // current harbour
             this._marker.setIcon(currentHarbour_icon);
