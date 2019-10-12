@@ -108,7 +108,9 @@ if (!empty($_POST)) {
             <!-- MAP -->
             <div class="col-xs-12 col-sm-6">
                 <div id="map" style="height: 500px;"></div>
-                <span id="select-count-display" class="label label-success hidden">Selected harbours <span class="badge">5</span></span>
+                <div id="select-count" class="hidden">
+                    <button type="button" class="btn btn-success">Selected harbours <span class="badge">0</span></button>
+                </div>
             </div>
             <div class="col-xs-12 col-sm-6">
                 <?php if ($_SESSION["auth"]) { ?>

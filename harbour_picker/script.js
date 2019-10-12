@@ -418,11 +418,11 @@ function resetCurrentHarbour() {
 }
 
 function updateSelectNbreDisplay() {
-    var countDisp = $("#select-count-display .badge")[0];
+    var countDisp = $("#select-count .badge")[0];
     if (selectedHarboursNumber > 0) {
-        reveal($("#select-count-display")[0]);
+        reveal($("#select-count")[0]);
         countDisp.innerHTML = selectedHarboursNumber;
     } else {
-        hide($("#select-count-display")[0]);
+        hide($("#select-count")[0]);
     }
 }
