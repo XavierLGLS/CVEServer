@@ -1,4 +1,10 @@
-<?php ?>
+<?php
+
+require("../config.php");
+require("../db.php");
+$db = new DB();
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +24,7 @@
         <p class="text-warning">This is a work in progress (and temporary) website...</p>
         <h3>Harbour Picker <span class="label label-success">released</span></h3>
         <div class="text-center">
-            <img src="harbour_picker/assets/overview.PNG" alt="overview" style="height: auto; width: 50%;">
+            <p class="text-muted">Almost <?php echo $db->getHarboursNumber(); ?> harbours are currently referenced !</p>
             <a href="harbour_picker/index.php">
                 <button type="button" class="btn btn-primary">Go to the harbour picker page</button>
             </a>

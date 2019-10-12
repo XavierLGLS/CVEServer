@@ -48,4 +48,9 @@ class DB
         }
         return $output;
     }
+
+    public function getHarboursNumber(){
+        $req = $this->db->query("SELECT count(*) FROM harbours");
+        return $req->fetchColumn();
+    }
 }
