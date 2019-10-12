@@ -18,11 +18,11 @@
         <p class="text-warning">This is a work in progress (and temporary) website...</p>
         <h3>Harbour Picker <span class="label label-success">released</span></h3>
         <div class="text-center">
-            <img src="harbour_picker/assets/overview.PNG" alt="overview" style="height: auto; width: 30%;">
+            <img src="harbour_picker/assets/overview.PNG" alt="overview" style="height: auto; width: 50%;">
+            <a href="harbour_picker/index.php">
+                <button type="button" class="btn btn-primary">Go to the harbour picker page</button>
+            </a>
         </div>
-        <a href="harbour_picker/index.php">
-            <button type="button" class="btn btn-primary">Go to the harbour picker page</button>
-        </a>
         <h3>User interface <span class="label label-danger">not developped yet</span></h3>
         <button type="button" disabled="true" class="btn btn-primary disable">Go to the user interface template</button>
         <h3>Admin panel <span class="label label-danger">not developped yet</span></h3>
