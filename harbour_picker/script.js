@@ -326,19 +326,23 @@ function csvImporterSetup() {
     });
 
     fileReader.addEventListener("load", function () {
-        var list = [];
-        var fileContent = $.csv.toArrays(fileReader.result);
-        fileContent.forEach(row => {
-            var content = row[0].split(';');
-            if (content[0] != "Latitude") {
-                var obj = {};
-                obj.lat = content[0];
-                obj.lng = content[1];
-                obj.name = content[2];
-                list.push(obj);
-            }
-        });
-        sendHarbours_init(list, "csv");
+        try {
+            var list = [];
+            var fileContent = $.csv.toArrays(fileReader.result);
+            fileContent.forEach(row => {
+                var content = row[0].split(';');
+                if (content[0] != "Latitude") {
+                    var obj = {};
+                    obj.lat = content[0];
+                    obj.lng = content[1];
+                    obj.name = content[2];
+                    list.push(obj);
+                }
+            });
+            sendHarbours_init(list, "csv");
+        } catch (error) {
+            alert(error);
+        }
     });
 
     fileInput.addEventListener("change", function () {
