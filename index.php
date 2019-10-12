@@ -1,7 +1,7 @@
 <?php
 
-require("../config.php");
-require("../db.php");
+require("config.php");
+require("db.php");
 $db = new DB();
 
 ?>
