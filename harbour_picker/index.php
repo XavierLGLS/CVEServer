@@ -92,74 +92,76 @@ if (!empty($_POST)) {
                     <button type="button" onclick="resetPolygon();" class="btn btn-danger visible-when-polygon-selection">Reset the polygon</button>
                 </div>
             <?php } ?>
-            <!-- MAP -->
-            <div class="col-xs-12 col-sm-6">
-                <div id="map" style="height: 500px;"></div>
-                <div id="select-count" class="hidden">
-                    <button type="button" class="btn btn-success disable">Selected harbours <span class="badge">0</span></button>
-                    <button type="button" class="btn btn-danger" onclick="unselectAllHarbours();">Unselect all harbours</button>
+        </div>
+        <!-- MAP -->
+        <div class="col-xs-12 col-sm-6">
+            <div id="map" style="height: 500px;"></div>
+            <div id="select-count" class="hidden">
+                <button type="button" class="btn btn-success disable">Selected harbours <span class="badge">0</span></button>
+                <button type="button" class="btn btn-danger" onclick="unselectAllHarbours();">Unselect all harbours</button>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <?php if ($_SESSION["auth"]) { ?>
+                <!-- IF REGISTERED -->
+                <h3>Add a new harbour</h3>
+                <form id="add-form" action="handler.php" method="post" autocomplete="off">
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION["auth"]->user_id; ?>">
+                    <div class="form-group">
+                        <label for="lat">Latitude</label>
+                        <input type="number" class="form-control" name="lat" step="0.001" placeholder="double click the map to fill in" required>
+                    </div>
+                    <label for="lng">Longitude</label>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="lng" step="0.001" placeholder="double click the map to fill in" required>
+                    </div>
+                    <label for="name">Harbour name</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder="be concise" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add this harbour</button>
+                </form>
+                <h3>Import harbours from a csv file</h3>
+                <div class="custom-file">
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                                Browse&hellip; <input type="file" id="file-input" style="display: none;">
+                            </span>
+                        </label>
+                        <input type="text" id="file-name-display" class="form-control" readonly>
+                    </div>
+                    <p class="help-block">the <strong>.csv</strong> file structure must be lat;lng;name (without header)</p>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6">
-                <?php if ($_SESSION["auth"]) { ?>
-                    <!-- IF REGISTERED -->
-                    <h3>Add a new harbour</h3>
-                    <form id="add-form" action="handler.php" method="post">
-                        <input type="hidden" name="user_id" value="<?php echo $_SESSION["auth"]->user_id; ?>">
-                        <div class="form-group">
-                            <label for="lat">Latitude</label>
-                            <input type="number" class="form-control" name="lat" step="0.001" placeholder="double click the map to fill in" required>
-                        </div>
-                        <label for="lng">Longitude</label>
-                        <div class="form-group">
-                            <input type="number" class="form-control" name="lng" step="0.001" placeholder="double click the map to fill in" required>
-                        </div>
-                        <label for="name">Harbour name</label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="be concise" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add this harbour</button>
-                    </form>
-                    <h3>Import harbours from a csv file</h3>
-                    <div class="custom-file">
-                        <div class="input-group">
-                            <label class="input-group-btn">
-                                <span class="btn btn-primary">
-                                    Browse&hellip; <input type="file" id="file-input" style="display: none;">
-                                </span>
-                            </label>
-                            <input type="text" id="file-name-display" class="form-control" readonly>
-                        </div>
-                        <p class="help-block">the <strong>.csv</strong> file structure must be lat;lng;name (without header)</p>
+                <div id="send-progress" class="progress hidden">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        0%
                     </div>
-                    <div id="send-progress" class="progress hidden">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                            0%
-                        </div>
+                </div>
+                <h3>Remove harbours</h3>
+                <button id="remove" class="btn btn-danger">Remove all selected harbours</button>
+            <?php } else { ?>
+                <!-- IF NOT REGISTERED YET -->
+                <form action="" method="post">
+                    <input type="hidden" name="form" value="login">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" name="username" required>
                     </div>
-                    <h3>Remove harbours</h3>
-                    <button id="remove" class="btn btn-danger">Remove all selected harbours</button>
-                <?php } else { ?>
-                    <!-- IF NOT REGISTERED YET -->
-                    <form action="" method="post">
-                        <input type="hidden" name="form" value="login">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">login</button>
-                    </form>
-                    <?php if (!empty($_POST)) {
-                            if ($_POST['form'] == "login") { ?>
-                            <div class="alert alert-danger fade in">The authentication failed</div>
-                <?php }
-                    }
-                } ?>
-            </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">login</button>
+                </form>
+                <?php if (!empty($_POST)) {
+                        if ($_POST['form'] == "login") { ?>
+                        <div class="alert alert-danger fade in">The authentication failed</div>
+            <?php }
+                }
+            } ?>
+        </div>
+        <div class="container">
             <?php if ($_SESSION["auth"]) { ?>
                 <div class="col-sm-12">
                     <h3>How to use this map</h3>
