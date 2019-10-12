@@ -94,14 +94,14 @@ if (!empty($_POST)) {
             <?php } ?>
         </div>
         <!-- MAP -->
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-9">
             <div id="map" style="height: 500px;"></div>
             <div id="select-count" class="hidden">
                 <button type="button" class="btn btn-success disable">Selected harbours <span class="badge">0</span></button>
                 <button type="button" class="btn btn-danger" onclick="unselectAllHarbours();">Unselect all harbours</button>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-3">
             <?php if ($_SESSION["auth"]) { ?>
                 <!-- IF REGISTERED -->
                 <h3>Add a new harbour</h3>
