@@ -95,7 +95,7 @@ class Harbour {
             this._marker.setIcon(selectedHarbour_icon);
             this._selected = true;
             selectedHarboursNumber++;
-            console.log(selectedHarboursNumber)
+            updateSelectNbreDisplay();
         }
     }
 
@@ -104,7 +104,7 @@ class Harbour {
             this._marker.setIcon(standardHarbour_icon);
             this._selected = false;
             selectedHarboursNumber--;
-            console.log(selectedHarboursNumber);
+            updateSelectNbreDisplay();
         }
     }
 
@@ -414,5 +414,15 @@ function resetPolygon() {
 function resetCurrentHarbour() {
     if (currentHarbour != null) {
         currentHarbour.hide();
+    }
+}
+
+function updateSelectNbreDisplay() {
+    var countDisp = $("#select-count-display .badge")[0];
+    if (selectedHarboursNumber > 0) {
+        reveal($("#select-count-display")[0]);
+        countDisp.innerHTML = selectedHarboursNumber;
+    } else {
+        hide($("#select-count-display")[0]);
     }
 }
