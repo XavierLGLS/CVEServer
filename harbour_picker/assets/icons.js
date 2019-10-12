@@ -12,7 +12,7 @@ var storedHarbour_icon = {
 
 //TODO: remove ?
 storedHarbour_icon = {
-    url: "icon_stored_harbour.png"
+    url: "assets/icon_stored_harbour.png"
 };
 
 var selectedHarbour_icon = {
@@ -26,7 +26,7 @@ var selectedHarbour_icon = {
 
 //TODO: remove ?
 selectedHarbour_icon = {
-    url: "icon_selected_harbour.png"
+    url: "assets/icon_selected_harbour.png"
 };
 
 var currentHarbour_icon = {
@@ -40,7 +40,7 @@ var currentHarbour_icon = {
 
 //TODO: remove ?
 currentHarbour_icon = {
-    url: "icon_current_harbour.png"
+    url: "assets/icon_current_harbour.png"
 };
 
 var polygonCorner_icon = {
