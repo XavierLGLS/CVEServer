@@ -2,6 +2,7 @@ var map;
 // Current new position
 var selectionMode;
 var selectedHarboursNumber = 0;
+var storedHarbourNumber;
 var currentHarbour;
 // Current polygon
 var currentPolygon;
@@ -262,6 +263,8 @@ function sendHarbours_onSendSuccess(result, status) {
         harboursBeingSent.batchsSent++;
         if (harboursBeingSent.batchsSent > 0) {
             var ids = result.replace(/[\"\[\]]/g, "").split(",");
+            storedHarbourNumber += ids.length;
+            updatedStoredNbreDisplay();
             harboursBeingSent.lastBatch.forEach(point => {
                 var newHarbour = new Harbour(map, { lat: parseFloat(point.lat), lng: parseFloat(point.lng) }, parseInt(ids.shift()), point.name);
                 harbours.push(newHarbour);
@@ -360,6 +363,7 @@ function reveal(elt) {
 
 $(document).ready(function () {
     initMenus();
+    storedHarbourNumber = parseInt($("#harbour-nbre")[0].innerHTML);
     $('#add-form').submit(function (event) {
         var harbour = [{
             name: $('#add-form input[name="name"]').val(),
@@ -386,6 +390,8 @@ $(document).ready(function () {
                     list: { list: JSON.stringify(ids) }
                 }, function (result, status) {
                     if (status == "success") {
+                        storedHarbourNumber -= harbours.filter(harbour => harbour.selected).length;
+                        updatedStoredNbreDisplay();
                         harbours.filter(harbour => harbour.selected).forEach(harbour => {
                             harbour.unselect();
                             harbour.hide();
@@ -439,4 +445,8 @@ function updateSelectNbreDisplay() {
     } else {
         hide($("#select-count")[0]);
     }
+}
+
+function updatedStoredNbreDisplay() {
+    $("#harbour-nbre").text(storedHarbourNumber);
 }

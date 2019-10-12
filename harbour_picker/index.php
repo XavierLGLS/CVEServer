@@ -76,7 +76,7 @@ if (!empty($_POST)) {
             <?php if ($_SESSION["auth"]) { ?>
                 <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]->name; ?>, thank you for your contribution !</p>
             <?php } ?>
-            <p>This tool manages the database where all harbours are stored. This harbours are locations where players will be able to make deals. Currenlty <strong><span id="harbour-nbre"><?php echo $db->getHarboursNumber(); ?></span> harbours</strong> ar stored !</p>
+            <p>This tool manages the database where all harbours are stored. This harbours are locations where players will be able to make deals. <strong><span id="harbour-nbre"><?php echo $db->getHarboursNumber(); ?></span> harbours</strong> are currently stored !</p>
             <!-- CAPTION -->
             <?php if ($_SESSION["auth"]) { ?>
                 <div class="col-sm-12">
