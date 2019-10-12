@@ -373,20 +373,24 @@ $(document).ready(function () {
             confirmString += ("\n - " + harbour.name);
             ids.push(harbour.id);
         });
-        if (confirm(confirmString)) {
-            $.post("handler.php", {
-                request: "remove",
-                list: { list: JSON.stringify(ids) }
-            }, function (result, status) {
-                if (status == "success") {
-                    harbours.filter(harbour => harbour.selected).forEach(harbour => {
-                        harbour.unselect();
-                        harbour.hide();
-                    });
-                } else if (status == "timeout" || status == "error") {
-                    console.log("error");
-                }
-            });
+        if (ids.length == 0) {
+            alert("Please select at least one harbour !");
+        } else {
+            if (confirm(confirmString)) {
+                $.post("handler.php", {
+                    request: "remove",
+                    list: { list: JSON.stringify(ids) }
+                }, function (result, status) {
+                    if (status == "success") {
+                        harbours.filter(harbour => harbour.selected).forEach(harbour => {
+                            harbour.unselect();
+                            harbour.hide();
+                        });
+                    } else if (status == "timeout" || status == "error") {
+                        console.log("error");
+                    }
+                });
+            }
         }
     });
 
@@ -417,7 +421,7 @@ function resetCurrentHarbour() {
     }
 }
 
-function unselectAllHarbours(){
+function unselectAllHarbours() {
     harbours.forEach(harbour => {
         harbour.unselect();
     });
