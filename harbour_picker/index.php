@@ -73,28 +73,15 @@ if (!empty($_POST)) {
     <body>
         <div class="container">
             <h1>Harbour picker</h1>
-            <p>This tool fills the database that stores all harbours where players will be able to make deals.</p>
+            <?php if ($_SESSION["auth"]) { ?>
+                <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]->name; ?>, thank you for your contribution !</p>
+            <?php } ?>
+            <p>This tool manages the database where all harbours are stored. This harbours are locations where players will be able to make deals.</p>
             <!-- CAPTION -->
             <?php if ($_SESSION["auth"]) { ?>
                 <div class="col-sm-12">
-                    <h3>How to use this map</h3>
+                    <h4>Chose the map interaction mod:</h4>
                     <div class="custom-control custom-radio">
-                        <ul>
-                            <li><strong>red marker</strong> Current harbour: not yet stored in the database</li>
-                            <li><strong>green marker</strong> Selected harbour</li>
-                            <li><strong>blue marker</strong> Harbours stored in the database</li>
-                            <li>
-                                <strong>Double click </strong>
-                                <span class="visible-when-harbour-creation">
-                                    Creates a temporary marker (red) on the map. Its location automatically fill out the form. It is not yet stored in the database. Double click this marker to remove it.
-                                </span>
-                                <span class="visible-when-polygon-selection hidden">
-                                    Creates a polygon corner. All markers inside this polygon are selected. Double click a corner (green marker) to remove it.
-                                </span>
-                            </li>
-                            <li><strong>Click on a blue marker </strong> Selects or unselects it. A selected marker turns green.</li>
-                        </ul>
-                        <h4>Chose the map interaction mod:</h4>
                         <input id="harbour-creation" type="radio" class="custom-control-input" name="dbleclick-mode" checked>
                         <label class="custom-control-label" for="harbour-creation">Harbour creation</label>
                         <input id="polygon-selection" type="radio" class="custom-control-input" name="dbleclick-mode">
@@ -116,7 +103,6 @@ if (!empty($_POST)) {
             <div class="col-xs-12 col-sm-6">
                 <?php if ($_SESSION["auth"]) { ?>
                     <!-- IF REGISTERED -->
-                    <p class="explanation text-info">Hello <?php echo $_SESSION["auth"]->name; ?>, thank you for your contribution !</p>
                     <h3>Add a new harbour</h3>
                     <form id="add-form" action="handler.php" method="post">
                         <input type="hidden" name="user_id" value="<?php echo $_SESSION["auth"]->user_id; ?>">
@@ -174,6 +160,26 @@ if (!empty($_POST)) {
                     }
                 } ?>
             </div>
+            <?php if ($_SESSION["auth"]) { ?>
+                <div class="col-sm-12">
+                    <h3>How to use this map</h3>
+                    <ul>
+                        <li><strong>red marker</strong> Current harbour: not yet stored in the database</li>
+                        <li><strong>green marker</strong> Selected harbour</li>
+                        <li><strong>blue marker</strong> Harbours stored in the database</li>
+                        <li>
+                            <strong>Double click </strong>
+                            <span class="visible-when-harbour-creation">
+                                Creates a temporary marker (red) on the map. Its location automatically fill out the form. It is not yet stored in the database. Double click this marker to remove it.
+                            </span>
+                            <span class="visible-when-polygon-selection hidden">
+                                Creates a polygon corner. All markers inside this polygon are selected. Double click a corner (green marker) to remove it.
+                            </span>
+                        </li>
+                        <li><strong>Click on a blue marker </strong> Selects or unselects it. A selected marker turns green.</li>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
         <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $MAPS_API_KEY; ?>&callback=initMap" async defer></script>
     </body>
