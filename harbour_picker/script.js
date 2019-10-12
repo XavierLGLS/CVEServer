@@ -68,7 +68,7 @@ class Harbour {
         this._marker = new google.maps.Marker({
             map: map,
             position: latLng,
-            icon: standardHarbour_icon,
+            icon: storedHarbour_icon,
             parent: this
         });
         if (id === undefined) { // current harbour
@@ -101,7 +101,7 @@ class Harbour {
 
     unselect() {
         if (this._selected) {
-            this._marker.setIcon(standardHarbour_icon);
+            this._marker.setIcon(storedHarbour_icon);
             this._selected = false;
             selectedHarboursNumber--;
             updateSelectNbreDisplay();
