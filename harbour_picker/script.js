@@ -417,6 +417,12 @@ function resetCurrentHarbour() {
     }
 }
 
+function unselectAllHarbours(){
+    harbours.forEach(harbour => {
+        harbour.unselect();
+    });
+}
+
 function updateSelectNbreDisplay() {
     var countDisp = $("#select-count .badge")[0];
     if (selectedHarboursNumber > 0) {
