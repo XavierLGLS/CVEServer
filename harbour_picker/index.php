@@ -141,6 +141,7 @@ if (!empty($_POST)) {
                     </div>
                 </div>
                 <h3>Export stored harbours</h3>
+                <a id="dummy-download" class="hidden"></a>
                 <button id="export" class="btn btn-primary" onclick="exportCSV();">Download</button>
                 <p class="help-block">generates a .csv file whose structure is lat;lng;name</p>
             <?php } else { ?>

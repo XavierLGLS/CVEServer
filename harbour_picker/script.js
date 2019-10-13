@@ -449,7 +449,7 @@ function exportCSV() {
                 csv += (harbour["lat"] + ";" + harbour["lng"] + ";" + harbour["name"] + "\n");
             }
             console.log(csv)
-            var hiddenElement = document.createElement('a');
+            var hiddenElement = document.getElementById("dummy-download");
             hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
             hiddenElement.target = '_blank';
             hiddenElement.download = 'harbours.csv';
