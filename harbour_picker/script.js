@@ -437,6 +437,28 @@ function unselectAllHarbours() {
     });
 }
 
+function exportCSV() {
+    $.post("handler.php", {
+        request: "get"
+    }, function (result, status) {
+        if (status == "success") {
+            var csv = 'Latitude,Longitude,Name\n';
+            var data = JSON.parse(result);
+            for (var i = 0; i < data.length; i++) {
+                var harbour = data[i];
+                csv += (harbour["lat"] + ";" + harbour["lng"] + ";" + harbour["name"] + "\n");
+            }
+            var hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'harbours.csv';
+            hiddenElement.click();
+        } else if (status == "timeout" || status == "error") {
+            console.log("error");
+        }
+    });
+}
+
 function updateSelectNbreDisplay() {
     var countDisp = $("#select-count .badge")[0];
     if (selectedHarboursNumber > 0) {

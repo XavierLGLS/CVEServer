@@ -95,7 +95,7 @@ if (!empty($_POST)) {
         </div>
         <!-- MAP -->
         <div class="col-xs-12 col-sm-9">
-            <div id="map" style="height: 500px;"></div>
+            <div id="map" style="height: 600px;"></div>
             <div id="select-count" class="hidden">
                 <button type="button" class="btn btn-success disable">Selected harbours <span class="badge">0</span></button>
                 <button type="button" class="btn btn-danger" onclick="unselectAllHarbours();">Unselect all harbours</button>
@@ -121,7 +121,9 @@ if (!empty($_POST)) {
                     </div>
                     <button type="submit" class="btn btn-primary">Add this harbour</button>
                 </form>
-                <h3>Import harbours from a csv file</h3>
+                <h3>Remove harbours</h3>
+                <button id="remove" class="btn btn-danger">Remove all selected harbours</button>
+                <h3>Import harbours frome a file</h3>
                 <div class="custom-file">
                     <div class="input-group">
                         <label class="input-group-btn">
@@ -131,15 +133,16 @@ if (!empty($_POST)) {
                         </label>
                         <input type="text" id="file-name-display" class="form-control" readonly>
                     </div>
-                    <p class="help-block">the <strong>.csv</strong> file structure must be lat;lng;name (without header)</p>
+                    <p class="help-block">the file must be a <strong>.csv</strong> file whose structure is lat;lng;name</p>
                 </div>
                 <div id="send-progress" class="progress hidden">
                     <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         0%
                     </div>
                 </div>
-                <h3>Remove harbours</h3>
-                <button id="remove" class="btn btn-danger">Remove all selected harbours</button>
+                <h3>Export stored harbours</h3>
+                <button id="export" class="btn btn-primary" onclick="exportCSV();">Download</button>
+                <p class="help-block">generates a .csv file whose structure is lat;lng;name</p>
             <?php } else { ?>
                 <!-- IF NOT REGISTERED YET -->
                 <form action="" method="post">
