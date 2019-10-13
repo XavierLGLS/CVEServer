@@ -448,6 +448,7 @@ function exportCSV() {
                 var harbour = data[i];
                 csv += (harbour["lat"] + ";" + harbour["lng"] + ";" + harbour["name"] + "\n");
             }
+            console.log(csv)
             var hiddenElement = document.createElement('a');
             hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
             hiddenElement.target = '_blank';

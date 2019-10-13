@@ -123,7 +123,7 @@ if (!empty($_POST)) {
                 </form>
                 <h3>Remove harbours</h3>
                 <button id="remove" class="btn btn-danger">Remove all selected harbours</button>
-                <h3>Import harbours frome a file</h3>
+                <h3>Import harbours</h3>
                 <div class="custom-file">
                     <div class="input-group">
                         <label class="input-group-btn">
