@@ -95,7 +95,7 @@ if (!empty($_POST)) {
         </div>
         <!-- MAP -->
         <div class="col-xs-12 col-sm-9">
-            <div id="map" style="height: 600px;"></div>
+            <div id="map" style="height: 650px;"></div>
             <div id="select-count" class="hidden">
                 <button type="button" class="btn btn-success disable">Selected harbours <span class="badge">0</span></button>
                 <button type="button" class="btn btn-danger" onclick="unselectAllHarbours();">Unselect all harbours</button>

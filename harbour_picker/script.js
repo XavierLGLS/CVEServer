@@ -442,13 +442,12 @@ function exportCSV() {
         request: "get"
     }, function (result, status) {
         if (status == "success") {
-            var csv = 'Latitude,Longitude,Name\n';
+            var csv = 'Latitude;Longitude;Name\n';
             var data = JSON.parse(result);
             for (var i = 0; i < data.length; i++) {
                 var harbour = data[i];
                 csv += (harbour["lat"] + ";" + harbour["lng"] + ";" + harbour["name"] + "\n");
             }
-            console.log(csv)
             var hiddenElement = document.getElementById("dummy-download");
             hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
             hiddenElement.target = '_blank';
