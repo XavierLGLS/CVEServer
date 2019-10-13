@@ -450,7 +450,7 @@ function exportCSV() {
             }
             var hiddenElement = document.getElementById("dummy-download");
             hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-            hiddenElement.target = '_blank';
+            // hiddenElement.target = '_blank';
             hiddenElement.download = 'harbours.csv';
             hiddenElement.click();
         } else if (status == "timeout" || status == "error") {
