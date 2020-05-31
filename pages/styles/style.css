@@ -1,0 +1,27 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.content-wrapper {
+    margin-bottom: 90px;
+    /* Height of footer*/
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background: #ccc;
+}
+
+.hidden {
+    display: none;
+}

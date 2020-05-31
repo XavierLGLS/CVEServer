@@ -1,10 +1,6 @@
-# roadmap
-
-## Harbour picker tool
-- [x] add harbour feature
-- [x] remove harbour feature
-- [x] multi selection (click on each server)
-- [ ] multi selection by area
-- [x] CSV file data import
-## CVE server
-- [ ] registration system
+# v0
+Setup of the player system (accounts, permissions etc...)
+# v1
+Simple model (only food)
+# v2
+Introduction of the economy model
