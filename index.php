@@ -33,6 +33,7 @@ $db = new DB();
         <button type="button" disabled="true" class="btn btn-primary disable">Go to the user interface template</button>
         <h3>Admin panel <span class="label label-danger">not developped yet</span></h3>
         <button type="button" disabled="true" class="btn btn-primary disable">Go to the admin panel</button>
+        <h3>V2 <span class="label label-danger">in development</span></h3>
     </div>
 </body>
 
